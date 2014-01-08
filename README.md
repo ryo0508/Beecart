@@ -66,6 +66,8 @@ This method will return ___ShoppingCart object___  which provides functionality 
 
 Detailed definition can be found in the Doc.
 
+[Check instance methods here](http://rubydoc.info/github/ryo0508/Beecart/master/frames)
+
 ## Saving Data in Cart
 
 You may save any data in the cart along with the item data.
