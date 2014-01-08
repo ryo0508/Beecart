@@ -1,0 +1,56 @@
+<h2>Add Item to Cart</h2>
+
+<%= form_tag add_item_path, method: 'post' do %>
+  <%= text_field_tag 'items[price]', 1980 %>
+  <%= text_field_tag 'items[quantity]', 1 %>
+  <%= button_tag "Add Item A", class: "button" %>
+<% end %>
+
+<%= form_tag add_item_path, method: 'post' do %>
+  <%= text_field_tag 'items[price]', 19080 %>
+  <%= text_field_tag 'items[quantity]', 3 %>
+  <%= button_tag "Add Item B", class: "button" %>
+<% end %>
+
+<hr />
+
+<h2>Your Current Cart Status</h2>
+
+<%# <%= @current_cart %>
+
+<dt>Cart Key:</dt>
+<dd><%= @current_cart.key %></dd>
+
+<dt>Total Cost:</dt>
+<dd><%= @current_cart.total_cost %></dd>
+
+<dt>Items:</dt>
+<dd class="item_list">
+  <%= @current_cart.items.each do |key, item| %>
+    <dt class="item">Price</dt>
+    <dd class="item"><%= item[:price] %></dd>
+    <br />
+    <dt class="item">Quantity</dt>
+    <dd class="item"><%= item[:quantity] %></dd>
+
+    <%= form_tag remove_item_path, method: 'delete' do %>
+      <%= hidden_field_tag 'items[key]', key %>
+      <%= button_tag "Remove This Item", class: "button" %>
+    <% end %>
+    <hr />
+  <% end %>
+</dd>
+
+<dt>Created at:</dt>
+<dd><%= @current_cart.data[:created_at] %></dd>
+
+<dt>Updated at:</dt>
+<dd><%= @current_cart.data[:updated_at] %></dd>
+
+<hr />
+
+<h2>Delete Cart</h2>
+
+<%= form_tag destroy_cart_path, method: 'delete' do %>
+  <%= button_tag "Destroy Cart", class: "button" %>
+<% end %>

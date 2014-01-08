@@ -8,7 +8,7 @@ Gem::Specification.new do |s|
   s.name        = "beecart"
   s.version     = Beecart::VERSION
   s.authors     = ["Ryo Sakikawa"]
-  s.email       = ["ryo.sakikawa"]
+  s.email       = ["ryo.sakikawa@gmail.com"]
   s.homepage    = "http://beenos.com"
   s.summary     = "Provide Basic Shopping Cart Function to Your Rails Project"
   s.description = "Provide Basic Shopping Cart Function to Your Rails Project"
