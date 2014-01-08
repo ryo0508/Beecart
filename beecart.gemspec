@@ -6,7 +6,11 @@ require "beecart/version"
 # Describe your gem and declare its dependencies:
 Gem::Specification.new do |s|
   s.name        = "beecart"
+<<<<<<< HEAD:beecart.gemspec
   s.version     = Beecart::VERSION
+=======
+  s.version     = Cartbee::VERSION
+>>>>>>> 264700cb2c7c2e94865a6be7441eaef28ebcdab3:beecart.gemspec
   s.authors     = ["Ryo Sakikawa"]
   s.email       = ["ryo.sakikawa"]
   s.homepage    = "http://beenos.com"

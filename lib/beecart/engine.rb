@@ -1,5 +1,5 @@
 module Beecart
   class Engine < ::Rails::Engine
-    isolate_namespace Beecart
+    isolate_namespace Cartbee
   end
 end
