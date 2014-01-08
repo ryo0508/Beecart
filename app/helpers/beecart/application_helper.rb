@@ -1,4 +1,4 @@
-module Cartbee
+module Beecart
   module ApplicationHelper
   end
 end
