@@ -1,12 +1,12 @@
 $:.push File.expand_path("../lib", __FILE__)
 
 # Maintain your gem's version:
-require "cartbee/version"
+require "beecart/version"
 
 # Describe your gem and declare its dependencies:
 Gem::Specification.new do |s|
-  s.name        = "cartbee"
-  s.version     = Cartbee::VERSION
+  s.name        = "beecart"
+  s.version     = Beecart::VERSION
   s.authors     = ["Ryo Sakikawa"]
   s.email       = ["ryo.sakikawa"]
   s.homepage    = "http://beenos.com"

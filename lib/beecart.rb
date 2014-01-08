@@ -1,9 +1,8 @@
-require "cartbee/engine"
+require "beecart/engine"
+require "beecart/models/shopping_cart"
+require "beecart/controllers/core_ext"
 
-require "cartbee/models/shopping_cart"
-require "cartbee/controllers/core_ext"
-
-module Cartbee
+module Beecart
   @expire_time = 20 * 60
   @redis_conf  = {
     host: 'localhost',

@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    cartbee (0.0.1)
+    beecart (0.0.1)
       rails (~> 4.0.0)
 
 GEM
@@ -91,7 +91,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  cartbee!
+  beecart!
   msgpack
   redis
   sqlite3
