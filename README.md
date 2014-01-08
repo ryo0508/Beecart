@@ -14,7 +14,8 @@ gem 'beecart', :git => 'git://github.com/ryo0508/Beecart.git', :branch => 'maste
 
 ###Create initializer
 
-```ruby:./config/initializers/beecart.rb
+```ruby
+# ./config/initializers/beecart.rb
 
 # Redis Information
 Beecart.redis_conf = {
@@ -28,7 +29,8 @@ Beecart.expire_time = 30 * 60
 
 ## How to use?
 
-```ruby:./app/controllers/your_controller.rb
+```ruby
+# ./app/controllers/your_controller.rb
 
 class YourController < ApplicationController
   def index
