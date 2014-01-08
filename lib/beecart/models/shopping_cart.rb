@@ -43,7 +43,7 @@
 #
 # ---------------------------------------------
 
-module Cartbee
+module Beecart
   class ShoppingCart
     attr_reader :key
 

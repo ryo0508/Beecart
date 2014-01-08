@@ -1,4 +1,4 @@
-module Cartbee
+module Beecart
   class Engine < ::Rails::Engine
     isolate_namespace Cartbee
   end
