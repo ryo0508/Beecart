@@ -1,51 +1,29 @@
-# ---------------------------------------------
-#
-# 基本的にはこのような形でカートは保存されることが期待される。
-#
-# items:
-#   random_key:
-#     title:    'your_item_title'
-#     price:    'your_item_price'
-#     quantity: 'your_item_quantity'
-#     ...
-#   random_key:
-#     title: 'your_item_title'
-#     price: 'your_item_price'
-#     ...
-# user_id: 'your_user_id'
-#
-# shipping_address:
-#   zip_code: 'customer_zip_code'
-#   prefecture: 'customer_prefecture'
-#   city: 'customer_city'
-#   address1: 'customer_address1'
-#   address2: 'customer_address2'
-#   ...
-#
-# billing_address:
-#   zip_code: 'customer_zip_code'
-#   prefecture: 'customer_prefecture'
-#   city: 'customer_city'
-#   address1: 'customer_address1'
-#   address2: 'customer_address2'
-#   ...
-# credit_card:
-#   card_number: 'customer_card_number'
-#   cvc: 'customer_cvc_number'
-#   exp_month: 'expiration_month'
-#   exp_year: 'expiration_year'
-#
-# shipping_instruction:
-#   ...
-#
-# created_at: 'cart_create_time'
-# updated_at: 'cart_update_time'
-#
-# ---------------------------------------------
+# -*- coding: utf-8 -*-
 
 module Beecart
+
+  # カートに入れた商品をRedisサーバー上に保存させるためのラッパー
+  #
+  #
+  # 商品情報以外に
+  # - 顧客情報
+  #   - 送り先住所
+  #   - 受取先住所
+  #   - カード情報
+  # - カート作成日時
+  # - カート更新日時
+  # などの情報も保存することが可能。
+  #
+  # @!attribute [rw] data
+  #   @return [Hash] redisとのコネクションを持ったオブジェクト
+  #
+  # @!attribute [r] redis
+  #   @return [Object] redisとのコネクションを持ったオブジェクト
+  #
+  # @!attribute [r] key
+  #   @return [String] カートを識別するためのランダムな文字列
+
   class ShoppingCart
-    attr_reader :key
 
     ShippingColumns = {
       shipping_address: [
@@ -62,12 +40,17 @@ module Beecart
       ]
     }
 
+    attr_reader :key
+
     def initialize(cart_id=nil)
       @redis = Redis.new(Beecart.redis_conf)
       @key   = cart_id.nil? ? SecureRandom.hex : cart_id
       @data  = data
     end
 
+    # 保存されているデーターをredisから取り出す。
+    #
+    # @return [Hash]
     def data
       if @data
         @data
@@ -76,16 +59,15 @@ module Beecart
       end
     end
 
-    # ------------------------------------------------------------
-    # 保存されているItemsの情報を返却
-    # ------------------------------------------------------------
+    # カート内のitemsを返却
+    # @return [Hash]
     def items
       data[:items]
     end
 
-    # ------------------------------------------------------------
     # カート内の商品の合計金額を計算する
-    # ------------------------------------------------------------
+    #
+    # @return [Integer]
     def total_cost
       data[:items].inject(0) do |res, (key, item)|
         res += item[:price].to_i * item[:quantity].to_i
@@ -93,10 +75,12 @@ module Beecart
       end
     end
 
-    # --------------------------------------------------
     # 指定された商品を追加する
-    # --------------------------------------------------
-    def add_item(item_info={})
+    #
+    # @param [Hash] item_info 追加する商品の情報
+    # @option item_info [Integer] :price 商品の値段
+    # @option item_info [Integer] :quantity (0) 購入希望個数
+    def add_item(item_info={ quantity: 0})
 
       unless item_info.has_key?(:price)
         raise "Price needs to be passed when adding a item to cart."
@@ -111,9 +95,11 @@ module Beecart
       dump_data
     end
 
-    # --------------------------------------------------
     # 購入データを追加する
-    # --------------------------------------------------
+    #
+    # @param [String] key 追加するデータの識別子
+    # @param [Hash] data 追加するデータ
+    # @return [Boolean]
     def append_transaction_data(key, data)
       if send(key.to_s + '_validate', data)
         @data[key.to_sym] = data
@@ -123,37 +109,34 @@ module Beecart
       end
     end
 
-    # --------------------------------------------------
     # 指定されたkeyにあるデータを削除する
-    # --------------------------------------------------
     def remove_item(key)
       @data[:items].delete(key.to_sym)
 
       dump_data
     end
 
-    # --------------------------------------------------
     # 指定されたkeyにあるデータのquantityを変更する
-    # --------------------------------------------------
+    # @param [String] key
+    # @param [Integer] quantity
+    # @return [Boolean]
     def change_quantity_of key, quantity
       @data[:items][key][:quantity] = quantity
 
       dump_data
     end
 
-    # --------------------------------------------------
     # Redisから削除
-    # --------------------------------------------------
     def destroy
       @redis.del(@key)
     end
 
     private
 
-    # ------------------------------------------------------------
     # Redis内から取ってきたデータをデシリアイズして返却。
     # またdataがnilの場合はdataのひな形を返却
-    # ------------------------------------------------------------
+    #
+    # @param [Hash, nil]
     def load_data(data)
       if data.nil?
         {
@@ -171,25 +154,20 @@ module Beecart
       end
     end
 
-    # ------------------------------------------------------------
     # Redis内のデータを書き換える
-    # ------------------------------------------------------------
     def dump_data
       @data[:updated_at] = Time.now.to_s
       @redis.set(@key, @data.to_msgpack)
       @redis.expire(@key, Beecart.expire_time)
     end
 
-    # ------------------------------------------------------------
     # ランダムな文字列を生成
-    # ------------------------------------------------------------
     def rand_key
       (0...8).map { (65 + rand(26)).chr }.join.to_sym
     end
 
-    # ------------------------------------------------------------
     # HashのKeyをシンボルにして返却
-    # ------------------------------------------------------------
+    # @return シンボルにされたHash
     def symbolize hash
       hash.inject({}) do |res,(key, val)|
         res[key.to_sym] = val.is_a?(Hash) ? symbolize(val) : val

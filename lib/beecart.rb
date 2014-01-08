@@ -9,7 +9,15 @@ module Beecart
     port: 5555
   }
 
+
+
   class << self
+    #
+    # @!attribute [rw] expire_time
+    #   何秒でカートが消滅するか
+    # @!attribute [rw] redis_conf
+    #   接続するRedisへの情報
+    #
     def expire_time=(val)
       @expire_time = val
     end
