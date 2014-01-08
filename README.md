@@ -9,7 +9,7 @@
 ###Adding to your Gemfile
 
 ```ruby
-gem 'beecart', :git => 'git://github.com/ryo0508/Beecart.git', :branch => 'master'
+gem "beecart", "~> 0.0.2"
 ```
 
 ###Create initializer
