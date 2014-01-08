@@ -1,2 +1,2 @@
-Cartbee::Engine.routes.draw do
+Beecart::Engine.routes.draw do
 end

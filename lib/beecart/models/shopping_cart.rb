@@ -63,7 +63,7 @@ module Beecart
     }
 
     def initialize(cart_id=nil)
-      @redis = Redis.new(Cartbee.redis_conf)
+      @redis = Redis.new(Beecart.redis_conf)
       @key   = cart_id.nil? ? SecureRandom.hex : cart_id
       @data  = data
     end
@@ -177,7 +177,7 @@ module Beecart
     def dump_data
       @data[:updated_at] = Time.now.to_s
       @redis.set(@key, @data.to_msgpack)
-      @redis.expire(@key, Cartbee.expire_time)
+      @redis.expire(@key, Beecart.expire_time)
     end
 
     # ------------------------------------------------------------
