@@ -25,21 +25,6 @@ module Beecart
 
   class ShoppingCart
 
-    ShippingColumns = {
-      shipping_address: [
-        :name, :zip, :province, :city, :address1, :address2, :tel
-      ],
-      billing_address: [
-        :name, :zip, :province, :city, :address1,:address2, :tel
-      ],
-      shipping_instruction: [
-        :delivery_date, :delivery_time_slot, :special_note
-      ],
-      credit_card: [
-        :number, :cvc, :exp_year, :exp_month, :name
-      ]
-    }
-
     attr_reader :key
 
     def initialize(cart_id=nil)

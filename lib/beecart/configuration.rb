@@ -1,4 +1,7 @@
+# -*- coding: utf-8 -*-
+
 require "logger"
+require "singleton"
 
 module Beecart
   class Configuration
@@ -35,7 +38,7 @@ module Beecart
       end
     end
 
-    attr_reader :redis
+    attr_reader   :redis
     attr_accessor :logger, :expire_time
   end
 
