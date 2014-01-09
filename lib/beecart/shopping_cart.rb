@@ -149,7 +149,7 @@ module Beecart
     def dump_data
       @data[:updated_at] = Time.now.to_s
       @redis.set(@key, @data.to_msgpack)
-      @redis.expire(@key, Beecart.expire_time)
+      @redis.expire(@key, Beecart.config.expire_time)
     end
 
     # ランダムな文字列を生成
