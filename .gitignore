@@ -1,5 +1,6 @@
 .bundle/
 .yardoc/
+bin/
 vendor/bundle
 log/*.log
 pkg/
