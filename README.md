@@ -30,6 +30,12 @@ Beecart.expire_time = 30 * 60
 ## How to use?
 
 ```ruby
+# ./app/controllers/application_controller.rb
+
+include Beecart::CurrentCart
+```
+
+```ruby
 # ./app/controllers/your_controller.rb
 
 class YourController < ApplicationController
