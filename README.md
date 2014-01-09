@@ -9,7 +9,7 @@
 ###Adding to your Gemfile
 
 ```ruby
-gem "beecart", "~> 0.0.2"
+gem "beecart"
 ```
 
 ###Create initializer
@@ -17,14 +17,18 @@ gem "beecart", "~> 0.0.2"
 ```ruby
 # ./config/initializers/beecart.rb
 
-# Redis Information
-Beecart.redis_conf = {
-  host: ‘localhost’,
-  port: 5555
-}
+Beecart.configure do |config|
 
-# Time to expire your cart in seconds
-Beecart.expire_time = 30 * 60
+  # Time to expire your cart in seconds
+  config.expire_time = 30
+
+  # Redis Information
+  config.redis = {
+    host: 'localhost',
+    port: 5555
+  }
+
+end
 ```
 
 ## How to use?
