@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  mount Beecart::Engine => "/beecart"
+  # mount Beecart::Engine => "/beecart"
 
   root :to => 'carts#index'
 
