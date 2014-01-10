@@ -100,3 +100,4 @@ puts @cart.data[:user_data][:age]
 ## TODO
 
 [ ] Customizable Validation
+[ ] Adding Custom Payment Methods
