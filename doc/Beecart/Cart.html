@@ -1,0 +1,2507 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>
+  Class: Beecart::Cart
+  
+    &mdash; Documentation by YARD 0.8.7.3
+  
+</title>
+
+  <link rel="stylesheet" href="../css/style.css" type="text/css" charset="utf-8" />
+
+  <link rel="stylesheet" href="../css/common.css" type="text/css" charset="utf-8" />
+
+<script type="text/javascript" charset="utf-8">
+  hasFrames = window.top.frames.main ? true : false;
+  relpath = '../';
+  framesUrl = "../frames.html#!" + escape(window.location.href);
+</script>
+
+
+  <script type="text/javascript" charset="utf-8" src="../js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="../js/app.js"></script>
+
+
+  </head>
+  <body>
+    <div id="header">
+      <div id="menu">
+  
+    <a href="../_index.html">Index (C)</a> &raquo;
+    <span class='title'><span class='object_link'><a href="../Beecart.html" title="Beecart (module)">Beecart</a></span></span>
+     &raquo; 
+    <span class="title">Cart</span>
+  
+
+  <div class="noframes"><span class="title">(</span><a href="." target="_top">no frames</a><span class="title">)</span></div>
+</div>
+
+      <div id="search">
+  
+    <a class="full_list_link" id="class_list_link"
+        href="../class_list.html">
+      Class List
+    </a>
+  
+    <a class="full_list_link" id="method_list_link"
+        href="../method_list.html">
+      Method List
+    </a>
+  
+    <a class="full_list_link" id="file_list_link"
+        href="../file_list.html">
+      File List
+    </a>
+  
+</div>
+      <div class="clear"></div>
+    </div>
+
+    <iframe id="search_frame"></iframe>
+
+    <div id="content"><h1>Class: Beecart::Cart
+  
+  
+  
+</h1>
+
+<dl class="box">
+  
+    <dt class="r1">Inherits:</dt>
+    <dd class="r1">
+      <span class="inheritName">Object</span>
+      
+        <ul class="fullTree">
+          <li>Object</li>
+          
+            <li class="next">Beecart::Cart</li>
+          
+        </ul>
+        <a href="#" class="inheritanceTree">show all</a>
+      
+      </dd>
+    
+  
+  
+    
+  
+    
+  
+  
+  
+    <dt class="r2 last">Defined in:</dt>
+    <dd class="r2 last">lib/beecart/cart.rb</dd>
+  
+</dl>
+<div class="clear"></div>
+
+<h2>Overview</h2><div class="docstring">
+  <div class="discussion">
+    
+<p>カートに入れた商品をRedisサーバー上に保存させるためのラッパー</p>
+
+<p>商品情報以外に</p>
+<ul><li>
+<p>顧客情報</p>
+<ul><li>
+<p>送り先住所</p>
+</li><li>
+<p>受取先住所</p>
+</li><li>
+<p>カード情報</p>
+</li></ul>
+</li><li>
+<p>カート作成日時</p>
+</li><li>
+<p>カート更新日時</p>
+</li></ul>
+
+<p>などの情報も保存することが可能。</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div>
+
+
+
+  <h2>Instance Attribute Summary <small>(<a href="#" class="summary_toggle">collapse</a>)</small></h2>
+  <ul class="summary">
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#data-instance_method" title="#data (instance method)">- (Hash) <strong>data</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>保存されているデーターをredisから取り出す。.</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#key-instance_method" title="#key (instance method)">- (String) <strong>key</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+      <span class="note title readonly">readonly</span>
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>カートを識別するためのランダムな文字列.</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#redis-instance_method" title="#redis (instance method)">- (Object) <strong>redis</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+      <span class="note title readonly">readonly</span>
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Redisとのコネクションを持ったオブジェクト.</p>
+</div></span>
+  
+</li>
+
+    
+  </ul>
+
+
+
+
+  
+    <h2>
+      Instance Method Summary
+      <small>(<a href="#" class="summary_toggle">collapse</a>)</small>
+    </h2>
+
+    <ul class="summary">
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#add_item-instance_method" title="#add_item (instance method)">- (Object) <strong>add_item</strong>(item_info = { quantity: 0}) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>指定された商品を追加する.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#append_info-instance_method" title="#append_info (instance method)">- (Boolean) <strong>append_info</strong>(key, data) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>購入データを追加する.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#change_quantity_of-instance_method" title="#change_quantity_of (instance method)">- (Boolean) <strong>change_quantity_of</strong>(key, quantity) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>指定されたkeyにあるデータのquantityを変更する.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#charge-instance_method" title="#charge (instance method)">- (Object) <strong>charge</strong>(payment_info = {}) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>本計上を取る.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#destroy-instance_method" title="#destroy (instance method)">- (Object) <strong>destroy</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Redisから削除.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#examine_payment-instance_method" title="#examine_payment (instance method)">- (Object) <strong>examine_payment</strong>(payment_info) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>仮計上(与信)をとる.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#initialize-instance_method" title="#initialize (instance method)">- (Cart) <strong>initialize</strong>(cart_id = nil) </a>
+    
+
+    
+  </span>
+  
+  
+    <span class="note title constructor">constructor</span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>A new instance of Cart.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#items-instance_method" title="#items (instance method)">- (Hash) <strong>items</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>カート内のitemsを返却.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#remove_item-instance_method" title="#remove_item (instance method)">- (Object) <strong>remove_item</strong>(key) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>指定されたkeyのアイテムを削除する.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#total_price-instance_method" title="#total_price (instance method)">- (Integer) <strong>total_price</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>カート内の商品の合計金額を計算する.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#total_price_with_tax-instance_method" title="#total_price_with_tax (instance method)">- (Integer) <strong>total_price_with_tax</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>カート内の商品の税込み合計金額を計算する.</p>
+</div></span>
+  
+</li>
+
+      
+    </ul>
+  
+
+<div id="constructor_details" class="method_details_list">
+  <h2>Constructor Details</h2>
+  
+    <div class="method_details first">
+  <h3 class="signature first" id="initialize-instance_method">
+  
+    - (<tt><span class='object_link'><a href="" title="Beecart::Cart (class)">Cart</a></span></tt>) <strong>initialize</strong>(cart_id = nil) 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Returns a new instance of Cart</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+30
+31
+32
+33
+34</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/beecart/cart.rb', line 30</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span><span class='lparen'>(</span><span class='id identifier rubyid_cart_id'>cart_id</span><span class='op'>=</span><span class='kw'>nil</span><span class='rparen'>)</span>
+  <span class='ivar'>@redis</span> <span class='op'>=</span> <span class='const'>Redis</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='const'>Beecart</span><span class='period'>.</span><span class='id identifier rubyid_config'>config</span><span class='period'>.</span><span class='id identifier rubyid_redis'>redis</span><span class='rparen'>)</span>
+  <span class='ivar'>@key</span>   <span class='op'>=</span> <span class='id identifier rubyid_cart_id'>cart_id</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span> <span class='op'>?</span> <span class='const'>SecureRandom</span><span class='period'>.</span><span class='id identifier rubyid_hex'>hex</span> <span class='op'>:</span> <span class='id identifier rubyid_cart_id'>cart_id</span>
+  <span class='ivar'>@data</span>  <span class='op'>=</span> <span class='id identifier rubyid_data'>data</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+  
+</div>
+
+  <div id="instance_attr_details" class="attr_details">
+    <h2>Instance Attribute Details</h2>
+    
+      
+      <span id="data=-instance_method"></span>
+      <div class="method_details first">
+  <h3 class="signature first" id="data-instance_method">
+  
+    - (<tt>Hash</tt>) <strong>data</strong> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>保存されているデーターをredisから取り出す。</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Hash</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175
+176
+177
+178
+179
+180
+181
+182
+183
+184
+185
+186
+187
+188
+189
+190
+191
+192
+193
+194
+195
+196
+197
+198
+199</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/beecart/cart.rb', line 26</span>
+
+<span class='kw'>class</span> <span class='const'>Cart</span>
+
+  <span class='id identifier rubyid_attr_reader'>attr_reader</span> <span class='symbol'>:key</span>
+
+  <span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span><span class='lparen'>(</span><span class='id identifier rubyid_cart_id'>cart_id</span><span class='op'>=</span><span class='kw'>nil</span><span class='rparen'>)</span>
+    <span class='ivar'>@redis</span> <span class='op'>=</span> <span class='const'>Redis</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='const'>Beecart</span><span class='period'>.</span><span class='id identifier rubyid_config'>config</span><span class='period'>.</span><span class='id identifier rubyid_redis'>redis</span><span class='rparen'>)</span>
+    <span class='ivar'>@key</span>   <span class='op'>=</span> <span class='id identifier rubyid_cart_id'>cart_id</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span> <span class='op'>?</span> <span class='const'>SecureRandom</span><span class='period'>.</span><span class='id identifier rubyid_hex'>hex</span> <span class='op'>:</span> <span class='id identifier rubyid_cart_id'>cart_id</span>
+    <span class='ivar'>@data</span>  <span class='op'>=</span> <span class='id identifier rubyid_data'>data</span>
+  <span class='kw'>end</span>
+
+  <span class='comment'># 保存されているデーターをredisから取り出す。
+</span>  <span class='comment'>#
+</span>  <span class='comment'># @return [Hash]
+</span>  <span class='kw'>def</span> <span class='id identifier rubyid_data'>data</span>
+    <span class='kw'>if</span> <span class='ivar'>@data</span>
+      <span class='ivar'>@data</span>
+    <span class='kw'>else</span>
+      <span class='id identifier rubyid_load_data'>load_data</span><span class='lparen'>(</span><span class='ivar'>@redis</span><span class='period'>.</span><span class='id identifier rubyid_get'>get</span><span class='lparen'>(</span><span class='ivar'>@key</span><span class='rparen'>)</span><span class='rparen'>)</span>
+    <span class='kw'>end</span>
+  <span class='kw'>end</span>
+
+  <span class='comment'># カート内のitemsを返却
+</span>  <span class='comment'># @return [Hash]
+</span>  <span class='kw'>def</span> <span class='id identifier rubyid_items'>items</span>
+    <span class='id identifier rubyid_data'>data</span><span class='lbracket'>[</span><span class='symbol'>:items</span><span class='rbracket'>]</span>
+  <span class='kw'>end</span>
+
+  <span class='comment'># カート内の商品の合計金額を計算する
+</span>  <span class='comment'>#
+</span>  <span class='comment'># @return [Integer] 税抜き合計金額
+</span>  <span class='kw'>def</span> <span class='id identifier rubyid_total_price'>total_price</span>
+    <span class='id identifier rubyid_data'>data</span><span class='lbracket'>[</span><span class='symbol'>:items</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_inject'>inject</span><span class='lparen'>(</span><span class='int'>0</span><span class='rparen'>)</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_res'>res</span><span class='comma'>,</span> <span class='lparen'>(</span><span class='id identifier rubyid_key'>key</span><span class='comma'>,</span> <span class='id identifier rubyid_item'>item</span><span class='rparen'>)</span><span class='op'>|</span>
+      <span class='id identifier rubyid_res'>res</span> <span class='op'>+=</span> <span class='id identifier rubyid_item'>item</span><span class='lbracket'>[</span><span class='symbol'>:price</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_to_i'>to_i</span> <span class='op'>*</span> <span class='id identifier rubyid_item'>item</span><span class='lbracket'>[</span><span class='symbol'>:quantity</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_to_i'>to_i</span>
+      <span class='id identifier rubyid_res'>res</span>
+    <span class='kw'>end</span>
+  <span class='kw'>end</span>
+
+  <span class='comment'># カート内の商品の税込み合計金額を計算する
+</span>  <span class='comment'>#
+</span>  <span class='comment'># @return [Integer] 税込み合計金額
+</span>  <span class='kw'>def</span> <span class='id identifier rubyid_total_price_with_tax'>total_price_with_tax</span>
+    <span class='id identifier rubyid_data'>data</span><span class='lbracket'>[</span><span class='symbol'>:items</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_inject'>inject</span><span class='lparen'>(</span><span class='int'>0</span><span class='rparen'>)</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_res'>res</span><span class='comma'>,</span> <span class='lparen'>(</span><span class='id identifier rubyid_key'>key</span><span class='comma'>,</span> <span class='id identifier rubyid_item'>item</span><span class='rparen'>)</span><span class='op'>|</span>
+      <span class='id identifier rubyid_res'>res</span> <span class='op'>+=</span> <span class='id identifier rubyid_item'>item</span><span class='lbracket'>[</span><span class='symbol'>:price</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_to_i'>to_i</span> <span class='op'>*</span> <span class='id identifier rubyid_item'>item</span><span class='lbracket'>[</span><span class='symbol'>:quantity</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_to_i'>to_i</span> <span class='op'>*</span> <span class='const'>Beecart</span><span class='period'>.</span><span class='id identifier rubyid_config'>config</span><span class='period'>.</span><span class='id identifier rubyid_tax_rate'>tax_rate</span>
+      <span class='id identifier rubyid_res'>res</span>
+    <span class='kw'>end</span>
+  <span class='kw'>end</span>
+
+  <span class='comment'># 指定された商品を追加する
+</span>  <span class='comment'>#
+</span>  <span class='comment'># @param [Hash] item_info 追加する商品の情報
+</span>  <span class='comment'># @option item_info [Integer] :price 商品の値段
+</span>  <span class='comment'># @option item_info [Integer] :quantity (0) 購入希望個数
+</span>  <span class='kw'>def</span> <span class='id identifier rubyid_add_item'>add_item</span><span class='lparen'>(</span><span class='id identifier rubyid_item_info'>item_info</span><span class='op'>=</span><span class='lbrace'>{</span> <span class='label'>quantity:</span> <span class='int'>0</span><span class='rbrace'>}</span><span class='rparen'>)</span>
+
+    <span class='kw'>unless</span> <span class='id identifier rubyid_item_info'>item_info</span><span class='period'>.</span><span class='id identifier rubyid_has_key?'>has_key?</span><span class='lparen'>(</span><span class='symbol'>:price</span><span class='rparen'>)</span>
+      <span class='id identifier rubyid_raise'>raise</span> <span class='const'>Error</span><span class='comma'>,</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Price needs to be passed when adding a item to cart.</span><span class='tstring_end'>&quot;</span></span>
+    <span class='kw'>end</span>
+
+    <span class='kw'>unless</span> <span class='id identifier rubyid_item_info'>item_info</span><span class='period'>.</span><span class='id identifier rubyid_has_key?'>has_key?</span><span class='lparen'>(</span><span class='symbol'>:quantity</span><span class='rparen'>)</span>
+      <span class='id identifier rubyid_raise'>raise</span> <span class='const'>Error</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Quantity needs to be passed when adding a item to cart.</span><span class='tstring_end'>&quot;</span></span>
+    <span class='kw'>end</span>
+
+    <span class='ivar'>@data</span><span class='lbracket'>[</span><span class='symbol'>:items</span><span class='rbracket'>]</span><span class='lbracket'>[</span><span class='id identifier rubyid_rand_key'>rand_key</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='id identifier rubyid_item_info'>item_info</span>
+
+    <span class='id identifier rubyid_dump_data'>dump_data</span>
+  <span class='kw'>end</span>
+
+  <span class='comment'># 購入データを追加する
+</span>  <span class='comment'>#
+</span>  <span class='comment'># @param [String] key 追加するデータの識別子
+</span>  <span class='comment'># @param [Hash] data 追加するデータ
+</span>  <span class='comment'># @return [Boolean]
+</span>  <span class='kw'>def</span> <span class='id identifier rubyid_append_info'>append_info</span><span class='lparen'>(</span><span class='id identifier rubyid_key'>key</span><span class='comma'>,</span> <span class='id identifier rubyid_data'>data</span><span class='rparen'>)</span>
+    <span class='kw'>if</span> <span class='id identifier rubyid_send'>send</span><span class='lparen'>(</span><span class='id identifier rubyid_key'>key</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span> <span class='op'>+</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>_validate</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_data'>data</span><span class='rparen'>)</span>
+      <span class='ivar'>@data</span><span class='lbracket'>[</span><span class='id identifier rubyid_key'>key</span><span class='period'>.</span><span class='id identifier rubyid_to_sym'>to_sym</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='id identifier rubyid_data'>data</span>
+      <span class='id identifier rubyid_dump_data'>dump_data</span>
+    <span class='kw'>else</span>
+      <span class='kw'>false</span>
+    <span class='kw'>end</span>
+  <span class='kw'>end</span>
+
+  <span class='comment'># 指定されたkeyのアイテムを削除する
+</span>  <span class='comment'>#
+</span>  <span class='comment'># @param [String] key 削除するアイテムのレコード
+</span>  <span class='kw'>def</span> <span class='id identifier rubyid_remove_item'>remove_item</span><span class='lparen'>(</span><span class='id identifier rubyid_key'>key</span><span class='rparen'>)</span>
+    <span class='ivar'>@data</span><span class='lbracket'>[</span><span class='symbol'>:items</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_delete'>delete</span><span class='lparen'>(</span><span class='id identifier rubyid_key'>key</span><span class='period'>.</span><span class='id identifier rubyid_to_sym'>to_sym</span><span class='rparen'>)</span>
+
+    <span class='id identifier rubyid_dump_data'>dump_data</span>
+  <span class='kw'>end</span>
+
+  <span class='comment'># 指定されたkeyにあるデータのquantityを変更する
+</span>  <span class='comment'>#
+</span>  <span class='comment'># @param [String] key
+</span>  <span class='comment'># @param [Integer] quantity
+</span>  <span class='comment'># @return [Boolean]
+</span>  <span class='kw'>def</span> <span class='id identifier rubyid_change_quantity_of'>change_quantity_of</span> <span class='id identifier rubyid_key'>key</span><span class='comma'>,</span> <span class='id identifier rubyid_quantity'>quantity</span>
+    <span class='ivar'>@data</span><span class='lbracket'>[</span><span class='symbol'>:items</span><span class='rbracket'>]</span><span class='lbracket'>[</span><span class='id identifier rubyid_key'>key</span><span class='rbracket'>]</span><span class='lbracket'>[</span><span class='symbol'>:quantity</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='id identifier rubyid_quantity'>quantity</span>
+
+    <span class='id identifier rubyid_dump_data'>dump_data</span>
+  <span class='kw'>end</span>
+
+  <span class='comment'># Redisから削除
+</span>  <span class='kw'>def</span> <span class='id identifier rubyid_destroy'>destroy</span>
+    <span class='ivar'>@redis</span><span class='period'>.</span><span class='id identifier rubyid_del'>del</span><span class='lparen'>(</span><span class='ivar'>@key</span><span class='rparen'>)</span>
+  <span class='kw'>end</span>
+
+  <span class='comment'># 仮計上(与信)をとる
+</span>  <span class='comment'>#
+</span>  <span class='comment'># @param [Hash] payment_info 支払情報
+</span>  <span class='kw'>def</span> <span class='id identifier rubyid_examine_payment'>examine_payment</span> <span class='id identifier rubyid_payment_info'>payment_info</span>
+    <span class='id identifier rubyid_gateway'>gateway</span><span class='period'>.</span><span class='id identifier rubyid_examine'>examine</span> <span class='id identifier rubyid_total_price_with_tax'>total_price_with_tax</span><span class='comma'>,</span> <span class='id identifier rubyid_payment_info'>payment_info</span>
+  <span class='kw'>end</span>
+
+  <span class='comment'># 本計上を取る
+</span>  <span class='comment'>#
+</span>  <span class='comment'># @param [Hash] payment_info 支払情報
+</span>  <span class='kw'>def</span> <span class='id identifier rubyid_charge'>charge</span> <span class='id identifier rubyid_payment_info'>payment_info</span><span class='op'>=</span><span class='lbrace'>{</span><span class='rbrace'>}</span>
+    <span class='const'>Rails</span><span class='period'>.</span><span class='id identifier rubyid_logger'>logger</span><span class='period'>.</span><span class='id identifier rubyid_debug'>debug</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>payment_info =&gt; </span><span class='embexpr_beg'>#{</span> <span class='id identifier rubyid_payment_info'>payment_info</span> <span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
+    <span class='const'>Rails</span><span class='period'>.</span><span class='id identifier rubyid_logger'>logger</span><span class='period'>.</span><span class='id identifier rubyid_debug'>debug</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>total_price =&gt;  </span><span class='embexpr_beg'>#{</span> <span class='id identifier rubyid_total_price_with_tax'>total_price_with_tax</span> <span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
+
+    <span class='id identifier rubyid_gateway'>gateway</span><span class='period'>.</span><span class='id identifier rubyid_charge'>charge</span> <span class='id identifier rubyid_total_price_with_tax'>total_price_with_tax</span><span class='comma'>,</span> <span class='id identifier rubyid_payment_info'>payment_info</span>
+  <span class='kw'>end</span>
+
+  <span class='id identifier rubyid_private'>private</span>
+
+  <span class='kw'>def</span> <span class='id identifier rubyid_gateway'>gateway</span> <span class='id identifier rubyid_name'>name</span><span class='op'>=</span><span class='kw'>nil</span>
+    <span class='id identifier rubyid_klass'>klass</span> <span class='op'>=</span> <span class='id identifier rubyid_name'>name</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span> <span class='op'>?</span>
+      <span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Beecart::Gateway::</span><span class='tstring_end'>&quot;</span></span> <span class='op'>+</span> <span class='const'>Beecart</span><span class='period'>.</span><span class='id identifier rubyid_config'>config</span><span class='period'>.</span><span class='id identifier rubyid_default_gateway'>default_gateway</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span><span class='period'>.</span><span class='id identifier rubyid_camelize'>camelize</span> <span class='op'>+</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Gateway</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_constantize'>constantize</span> <span class='op'>:</span> <span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Beecart::Gateway::</span><span class='tstring_end'>&quot;</span></span> <span class='op'>+</span> <span class='id identifier rubyid_name'>name</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span><span class='period'>.</span><span class='id identifier rubyid_camelize'>camelize</span> <span class='op'>+</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Gateway</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_constantize'>constantize</span>
+
+    <span class='id identifier rubyid_klass'>klass</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span>
+  <span class='kw'>end</span>
+
+  <span class='comment'># Redis内から取ってきたデータをデシリアイズして返却。
+</span>  <span class='comment'># またdataがnilの場合はdataのひな形を返却
+</span>  <span class='comment'>#
+</span>  <span class='comment'># @param [Hash, nil]
+</span>  <span class='kw'>def</span> <span class='id identifier rubyid_load_data'>load_data</span><span class='lparen'>(</span><span class='id identifier rubyid_data'>data</span><span class='rparen'>)</span>
+    <span class='kw'>if</span> <span class='id identifier rubyid_data'>data</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span>
+      <span class='lbrace'>{</span>
+        <span class='label'>items:</span> <span class='lbrace'>{</span><span class='rbrace'>}</span><span class='comma'>,</span>
+        <span class='label'>user_id:</span> <span class='kw'>nil</span><span class='comma'>,</span>
+        <span class='label'>shipping_address:</span> <span class='lbrace'>{</span><span class='rbrace'>}</span><span class='comma'>,</span>
+        <span class='label'>billing_address:</span> <span class='lbrace'>{</span><span class='rbrace'>}</span><span class='comma'>,</span>
+        <span class='label'>credit_card:</span> <span class='lbrace'>{</span><span class='rbrace'>}</span><span class='comma'>,</span>
+        <span class='label'>shipping_instruction:</span> <span class='lbrace'>{</span><span class='rbrace'>}</span><span class='comma'>,</span>
+        <span class='label'>created_at:</span> <span class='const'>Time</span><span class='period'>.</span><span class='id identifier rubyid_now'>now</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span><span class='comma'>,</span>
+        <span class='label'>updated_at:</span> <span class='const'>Time</span><span class='period'>.</span><span class='id identifier rubyid_now'>now</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span>
+      <span class='rbrace'>}</span>
+    <span class='kw'>else</span>
+      <span class='id identifier rubyid_symbolize'>symbolize</span><span class='lparen'>(</span><span class='const'>MessagePack</span><span class='period'>.</span><span class='id identifier rubyid_unpack'>unpack</span><span class='lparen'>(</span><span class='id identifier rubyid_data'>data</span><span class='rparen'>)</span><span class='rparen'>)</span>
+    <span class='kw'>end</span>
+  <span class='kw'>end</span>
+
+  <span class='comment'># Redis内のデータを書き換える
+</span>  <span class='kw'>def</span> <span class='id identifier rubyid_dump_data'>dump_data</span>
+    <span class='ivar'>@data</span><span class='lbracket'>[</span><span class='symbol'>:updated_at</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='const'>Time</span><span class='period'>.</span><span class='id identifier rubyid_now'>now</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span>
+    <span class='ivar'>@redis</span><span class='period'>.</span><span class='id identifier rubyid_set'>set</span><span class='lparen'>(</span><span class='ivar'>@key</span><span class='comma'>,</span> <span class='ivar'>@data</span><span class='period'>.</span><span class='id identifier rubyid_to_msgpack'>to_msgpack</span><span class='rparen'>)</span>
+    <span class='ivar'>@redis</span><span class='period'>.</span><span class='id identifier rubyid_expire'>expire</span><span class='lparen'>(</span><span class='ivar'>@key</span><span class='comma'>,</span> <span class='const'>Beecart</span><span class='period'>.</span><span class='id identifier rubyid_config'>config</span><span class='period'>.</span><span class='id identifier rubyid_expire_time'>expire_time</span><span class='rparen'>)</span>
+  <span class='kw'>end</span>
+
+  <span class='comment'># ランダムな文字列を生成
+</span>  <span class='kw'>def</span> <span class='id identifier rubyid_rand_key'>rand_key</span>
+    <span class='lparen'>(</span><span class='int'>0</span><span class='op'>...</span><span class='int'>8</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_map'>map</span> <span class='lbrace'>{</span> <span class='lparen'>(</span><span class='int'>65</span> <span class='op'>+</span> <span class='id identifier rubyid_rand'>rand</span><span class='lparen'>(</span><span class='int'>26</span><span class='rparen'>)</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_chr'>chr</span> <span class='rbrace'>}</span><span class='period'>.</span><span class='id identifier rubyid_join'>join</span><span class='period'>.</span><span class='id identifier rubyid_to_sym'>to_sym</span>
+  <span class='kw'>end</span>
+
+  <span class='comment'># HashのKeyをシンボルにして返却
+</span>  <span class='comment'># @return シンボルにされたHash
+</span>  <span class='kw'>def</span> <span class='id identifier rubyid_symbolize'>symbolize</span> <span class='id identifier rubyid_hash'>hash</span>
+    <span class='id identifier rubyid_hash'>hash</span><span class='period'>.</span><span class='id identifier rubyid_inject'>inject</span><span class='lparen'>(</span><span class='lbrace'>{</span><span class='rbrace'>}</span><span class='rparen'>)</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_res'>res</span><span class='comma'>,</span><span class='lparen'>(</span><span class='id identifier rubyid_key'>key</span><span class='comma'>,</span> <span class='id identifier rubyid_val'>val</span><span class='rparen'>)</span><span class='op'>|</span>
+      <span class='id identifier rubyid_res'>res</span><span class='lbracket'>[</span><span class='id identifier rubyid_key'>key</span><span class='period'>.</span><span class='id identifier rubyid_to_sym'>to_sym</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='id identifier rubyid_val'>val</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span><span class='lparen'>(</span><span class='const'>Hash</span><span class='rparen'>)</span> <span class='op'>?</span> <span class='id identifier rubyid_symbolize'>symbolize</span><span class='lparen'>(</span><span class='id identifier rubyid_val'>val</span><span class='rparen'>)</span> <span class='op'>:</span> <span class='id identifier rubyid_val'>val</span>
+      <span class='id identifier rubyid_res'>res</span>
+    <span class='kw'>end</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id=""></span>
+      <div class="method_details ">
+  <h3 class="signature " id="key-instance_method">
+  
+    - (<tt>String</tt>) <strong>key</strong>  <span class="extras">(readonly)</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Returns カートを識別するためのランダムな文字列</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>カートを識別するためのランダムな文字列</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175
+176
+177
+178
+179
+180
+181
+182
+183
+184
+185
+186
+187
+188
+189
+190
+191
+192
+193
+194
+195
+196
+197
+198
+199</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/beecart/cart.rb', line 26</span>
+
+<span class='kw'>class</span> <span class='const'>Cart</span>
+
+  <span class='id identifier rubyid_attr_reader'>attr_reader</span> <span class='symbol'>:key</span>
+
+  <span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span><span class='lparen'>(</span><span class='id identifier rubyid_cart_id'>cart_id</span><span class='op'>=</span><span class='kw'>nil</span><span class='rparen'>)</span>
+    <span class='ivar'>@redis</span> <span class='op'>=</span> <span class='const'>Redis</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='const'>Beecart</span><span class='period'>.</span><span class='id identifier rubyid_config'>config</span><span class='period'>.</span><span class='id identifier rubyid_redis'>redis</span><span class='rparen'>)</span>
+    <span class='ivar'>@key</span>   <span class='op'>=</span> <span class='id identifier rubyid_cart_id'>cart_id</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span> <span class='op'>?</span> <span class='const'>SecureRandom</span><span class='period'>.</span><span class='id identifier rubyid_hex'>hex</span> <span class='op'>:</span> <span class='id identifier rubyid_cart_id'>cart_id</span>
+    <span class='ivar'>@data</span>  <span class='op'>=</span> <span class='id identifier rubyid_data'>data</span>
+  <span class='kw'>end</span>
+
+  <span class='comment'># 保存されているデーターをredisから取り出す。
+</span>  <span class='comment'>#
+</span>  <span class='comment'># @return [Hash]
+</span>  <span class='kw'>def</span> <span class='id identifier rubyid_data'>data</span>
+    <span class='kw'>if</span> <span class='ivar'>@data</span>
+      <span class='ivar'>@data</span>
+    <span class='kw'>else</span>
+      <span class='id identifier rubyid_load_data'>load_data</span><span class='lparen'>(</span><span class='ivar'>@redis</span><span class='period'>.</span><span class='id identifier rubyid_get'>get</span><span class='lparen'>(</span><span class='ivar'>@key</span><span class='rparen'>)</span><span class='rparen'>)</span>
+    <span class='kw'>end</span>
+  <span class='kw'>end</span>
+
+  <span class='comment'># カート内のitemsを返却
+</span>  <span class='comment'># @return [Hash]
+</span>  <span class='kw'>def</span> <span class='id identifier rubyid_items'>items</span>
+    <span class='id identifier rubyid_data'>data</span><span class='lbracket'>[</span><span class='symbol'>:items</span><span class='rbracket'>]</span>
+  <span class='kw'>end</span>
+
+  <span class='comment'># カート内の商品の合計金額を計算する
+</span>  <span class='comment'>#
+</span>  <span class='comment'># @return [Integer] 税抜き合計金額
+</span>  <span class='kw'>def</span> <span class='id identifier rubyid_total_price'>total_price</span>
+    <span class='id identifier rubyid_data'>data</span><span class='lbracket'>[</span><span class='symbol'>:items</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_inject'>inject</span><span class='lparen'>(</span><span class='int'>0</span><span class='rparen'>)</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_res'>res</span><span class='comma'>,</span> <span class='lparen'>(</span><span class='id identifier rubyid_key'>key</span><span class='comma'>,</span> <span class='id identifier rubyid_item'>item</span><span class='rparen'>)</span><span class='op'>|</span>
+      <span class='id identifier rubyid_res'>res</span> <span class='op'>+=</span> <span class='id identifier rubyid_item'>item</span><span class='lbracket'>[</span><span class='symbol'>:price</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_to_i'>to_i</span> <span class='op'>*</span> <span class='id identifier rubyid_item'>item</span><span class='lbracket'>[</span><span class='symbol'>:quantity</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_to_i'>to_i</span>
+      <span class='id identifier rubyid_res'>res</span>
+    <span class='kw'>end</span>
+  <span class='kw'>end</span>
+
+  <span class='comment'># カート内の商品の税込み合計金額を計算する
+</span>  <span class='comment'>#
+</span>  <span class='comment'># @return [Integer] 税込み合計金額
+</span>  <span class='kw'>def</span> <span class='id identifier rubyid_total_price_with_tax'>total_price_with_tax</span>
+    <span class='id identifier rubyid_data'>data</span><span class='lbracket'>[</span><span class='symbol'>:items</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_inject'>inject</span><span class='lparen'>(</span><span class='int'>0</span><span class='rparen'>)</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_res'>res</span><span class='comma'>,</span> <span class='lparen'>(</span><span class='id identifier rubyid_key'>key</span><span class='comma'>,</span> <span class='id identifier rubyid_item'>item</span><span class='rparen'>)</span><span class='op'>|</span>
+      <span class='id identifier rubyid_res'>res</span> <span class='op'>+=</span> <span class='id identifier rubyid_item'>item</span><span class='lbracket'>[</span><span class='symbol'>:price</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_to_i'>to_i</span> <span class='op'>*</span> <span class='id identifier rubyid_item'>item</span><span class='lbracket'>[</span><span class='symbol'>:quantity</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_to_i'>to_i</span> <span class='op'>*</span> <span class='const'>Beecart</span><span class='period'>.</span><span class='id identifier rubyid_config'>config</span><span class='period'>.</span><span class='id identifier rubyid_tax_rate'>tax_rate</span>
+      <span class='id identifier rubyid_res'>res</span>
+    <span class='kw'>end</span>
+  <span class='kw'>end</span>
+
+  <span class='comment'># 指定された商品を追加する
+</span>  <span class='comment'>#
+</span>  <span class='comment'># @param [Hash] item_info 追加する商品の情報
+</span>  <span class='comment'># @option item_info [Integer] :price 商品の値段
+</span>  <span class='comment'># @option item_info [Integer] :quantity (0) 購入希望個数
+</span>  <span class='kw'>def</span> <span class='id identifier rubyid_add_item'>add_item</span><span class='lparen'>(</span><span class='id identifier rubyid_item_info'>item_info</span><span class='op'>=</span><span class='lbrace'>{</span> <span class='label'>quantity:</span> <span class='int'>0</span><span class='rbrace'>}</span><span class='rparen'>)</span>
+
+    <span class='kw'>unless</span> <span class='id identifier rubyid_item_info'>item_info</span><span class='period'>.</span><span class='id identifier rubyid_has_key?'>has_key?</span><span class='lparen'>(</span><span class='symbol'>:price</span><span class='rparen'>)</span>
+      <span class='id identifier rubyid_raise'>raise</span> <span class='const'>Error</span><span class='comma'>,</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Price needs to be passed when adding a item to cart.</span><span class='tstring_end'>&quot;</span></span>
+    <span class='kw'>end</span>
+
+    <span class='kw'>unless</span> <span class='id identifier rubyid_item_info'>item_info</span><span class='period'>.</span><span class='id identifier rubyid_has_key?'>has_key?</span><span class='lparen'>(</span><span class='symbol'>:quantity</span><span class='rparen'>)</span>
+      <span class='id identifier rubyid_raise'>raise</span> <span class='const'>Error</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Quantity needs to be passed when adding a item to cart.</span><span class='tstring_end'>&quot;</span></span>
+    <span class='kw'>end</span>
+
+    <span class='ivar'>@data</span><span class='lbracket'>[</span><span class='symbol'>:items</span><span class='rbracket'>]</span><span class='lbracket'>[</span><span class='id identifier rubyid_rand_key'>rand_key</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='id identifier rubyid_item_info'>item_info</span>
+
+    <span class='id identifier rubyid_dump_data'>dump_data</span>
+  <span class='kw'>end</span>
+
+  <span class='comment'># 購入データを追加する
+</span>  <span class='comment'>#
+</span>  <span class='comment'># @param [String] key 追加するデータの識別子
+</span>  <span class='comment'># @param [Hash] data 追加するデータ
+</span>  <span class='comment'># @return [Boolean]
+</span>  <span class='kw'>def</span> <span class='id identifier rubyid_append_info'>append_info</span><span class='lparen'>(</span><span class='id identifier rubyid_key'>key</span><span class='comma'>,</span> <span class='id identifier rubyid_data'>data</span><span class='rparen'>)</span>
+    <span class='kw'>if</span> <span class='id identifier rubyid_send'>send</span><span class='lparen'>(</span><span class='id identifier rubyid_key'>key</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span> <span class='op'>+</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>_validate</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_data'>data</span><span class='rparen'>)</span>
+      <span class='ivar'>@data</span><span class='lbracket'>[</span><span class='id identifier rubyid_key'>key</span><span class='period'>.</span><span class='id identifier rubyid_to_sym'>to_sym</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='id identifier rubyid_data'>data</span>
+      <span class='id identifier rubyid_dump_data'>dump_data</span>
+    <span class='kw'>else</span>
+      <span class='kw'>false</span>
+    <span class='kw'>end</span>
+  <span class='kw'>end</span>
+
+  <span class='comment'># 指定されたkeyのアイテムを削除する
+</span>  <span class='comment'>#
+</span>  <span class='comment'># @param [String] key 削除するアイテムのレコード
+</span>  <span class='kw'>def</span> <span class='id identifier rubyid_remove_item'>remove_item</span><span class='lparen'>(</span><span class='id identifier rubyid_key'>key</span><span class='rparen'>)</span>
+    <span class='ivar'>@data</span><span class='lbracket'>[</span><span class='symbol'>:items</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_delete'>delete</span><span class='lparen'>(</span><span class='id identifier rubyid_key'>key</span><span class='period'>.</span><span class='id identifier rubyid_to_sym'>to_sym</span><span class='rparen'>)</span>
+
+    <span class='id identifier rubyid_dump_data'>dump_data</span>
+  <span class='kw'>end</span>
+
+  <span class='comment'># 指定されたkeyにあるデータのquantityを変更する
+</span>  <span class='comment'>#
+</span>  <span class='comment'># @param [String] key
+</span>  <span class='comment'># @param [Integer] quantity
+</span>  <span class='comment'># @return [Boolean]
+</span>  <span class='kw'>def</span> <span class='id identifier rubyid_change_quantity_of'>change_quantity_of</span> <span class='id identifier rubyid_key'>key</span><span class='comma'>,</span> <span class='id identifier rubyid_quantity'>quantity</span>
+    <span class='ivar'>@data</span><span class='lbracket'>[</span><span class='symbol'>:items</span><span class='rbracket'>]</span><span class='lbracket'>[</span><span class='id identifier rubyid_key'>key</span><span class='rbracket'>]</span><span class='lbracket'>[</span><span class='symbol'>:quantity</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='id identifier rubyid_quantity'>quantity</span>
+
+    <span class='id identifier rubyid_dump_data'>dump_data</span>
+  <span class='kw'>end</span>
+
+  <span class='comment'># Redisから削除
+</span>  <span class='kw'>def</span> <span class='id identifier rubyid_destroy'>destroy</span>
+    <span class='ivar'>@redis</span><span class='period'>.</span><span class='id identifier rubyid_del'>del</span><span class='lparen'>(</span><span class='ivar'>@key</span><span class='rparen'>)</span>
+  <span class='kw'>end</span>
+
+  <span class='comment'># 仮計上(与信)をとる
+</span>  <span class='comment'>#
+</span>  <span class='comment'># @param [Hash] payment_info 支払情報
+</span>  <span class='kw'>def</span> <span class='id identifier rubyid_examine_payment'>examine_payment</span> <span class='id identifier rubyid_payment_info'>payment_info</span>
+    <span class='id identifier rubyid_gateway'>gateway</span><span class='period'>.</span><span class='id identifier rubyid_examine'>examine</span> <span class='id identifier rubyid_total_price_with_tax'>total_price_with_tax</span><span class='comma'>,</span> <span class='id identifier rubyid_payment_info'>payment_info</span>
+  <span class='kw'>end</span>
+
+  <span class='comment'># 本計上を取る
+</span>  <span class='comment'>#
+</span>  <span class='comment'># @param [Hash] payment_info 支払情報
+</span>  <span class='kw'>def</span> <span class='id identifier rubyid_charge'>charge</span> <span class='id identifier rubyid_payment_info'>payment_info</span><span class='op'>=</span><span class='lbrace'>{</span><span class='rbrace'>}</span>
+    <span class='const'>Rails</span><span class='period'>.</span><span class='id identifier rubyid_logger'>logger</span><span class='period'>.</span><span class='id identifier rubyid_debug'>debug</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>payment_info =&gt; </span><span class='embexpr_beg'>#{</span> <span class='id identifier rubyid_payment_info'>payment_info</span> <span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
+    <span class='const'>Rails</span><span class='period'>.</span><span class='id identifier rubyid_logger'>logger</span><span class='period'>.</span><span class='id identifier rubyid_debug'>debug</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>total_price =&gt;  </span><span class='embexpr_beg'>#{</span> <span class='id identifier rubyid_total_price_with_tax'>total_price_with_tax</span> <span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
+
+    <span class='id identifier rubyid_gateway'>gateway</span><span class='period'>.</span><span class='id identifier rubyid_charge'>charge</span> <span class='id identifier rubyid_total_price_with_tax'>total_price_with_tax</span><span class='comma'>,</span> <span class='id identifier rubyid_payment_info'>payment_info</span>
+  <span class='kw'>end</span>
+
+  <span class='id identifier rubyid_private'>private</span>
+
+  <span class='kw'>def</span> <span class='id identifier rubyid_gateway'>gateway</span> <span class='id identifier rubyid_name'>name</span><span class='op'>=</span><span class='kw'>nil</span>
+    <span class='id identifier rubyid_klass'>klass</span> <span class='op'>=</span> <span class='id identifier rubyid_name'>name</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span> <span class='op'>?</span>
+      <span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Beecart::Gateway::</span><span class='tstring_end'>&quot;</span></span> <span class='op'>+</span> <span class='const'>Beecart</span><span class='period'>.</span><span class='id identifier rubyid_config'>config</span><span class='period'>.</span><span class='id identifier rubyid_default_gateway'>default_gateway</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span><span class='period'>.</span><span class='id identifier rubyid_camelize'>camelize</span> <span class='op'>+</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Gateway</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_constantize'>constantize</span> <span class='op'>:</span> <span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Beecart::Gateway::</span><span class='tstring_end'>&quot;</span></span> <span class='op'>+</span> <span class='id identifier rubyid_name'>name</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span><span class='period'>.</span><span class='id identifier rubyid_camelize'>camelize</span> <span class='op'>+</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Gateway</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_constantize'>constantize</span>
+
+    <span class='id identifier rubyid_klass'>klass</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span>
+  <span class='kw'>end</span>
+
+  <span class='comment'># Redis内から取ってきたデータをデシリアイズして返却。
+</span>  <span class='comment'># またdataがnilの場合はdataのひな形を返却
+</span>  <span class='comment'>#
+</span>  <span class='comment'># @param [Hash, nil]
+</span>  <span class='kw'>def</span> <span class='id identifier rubyid_load_data'>load_data</span><span class='lparen'>(</span><span class='id identifier rubyid_data'>data</span><span class='rparen'>)</span>
+    <span class='kw'>if</span> <span class='id identifier rubyid_data'>data</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span>
+      <span class='lbrace'>{</span>
+        <span class='label'>items:</span> <span class='lbrace'>{</span><span class='rbrace'>}</span><span class='comma'>,</span>
+        <span class='label'>user_id:</span> <span class='kw'>nil</span><span class='comma'>,</span>
+        <span class='label'>shipping_address:</span> <span class='lbrace'>{</span><span class='rbrace'>}</span><span class='comma'>,</span>
+        <span class='label'>billing_address:</span> <span class='lbrace'>{</span><span class='rbrace'>}</span><span class='comma'>,</span>
+        <span class='label'>credit_card:</span> <span class='lbrace'>{</span><span class='rbrace'>}</span><span class='comma'>,</span>
+        <span class='label'>shipping_instruction:</span> <span class='lbrace'>{</span><span class='rbrace'>}</span><span class='comma'>,</span>
+        <span class='label'>created_at:</span> <span class='const'>Time</span><span class='period'>.</span><span class='id identifier rubyid_now'>now</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span><span class='comma'>,</span>
+        <span class='label'>updated_at:</span> <span class='const'>Time</span><span class='period'>.</span><span class='id identifier rubyid_now'>now</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span>
+      <span class='rbrace'>}</span>
+    <span class='kw'>else</span>
+      <span class='id identifier rubyid_symbolize'>symbolize</span><span class='lparen'>(</span><span class='const'>MessagePack</span><span class='period'>.</span><span class='id identifier rubyid_unpack'>unpack</span><span class='lparen'>(</span><span class='id identifier rubyid_data'>data</span><span class='rparen'>)</span><span class='rparen'>)</span>
+    <span class='kw'>end</span>
+  <span class='kw'>end</span>
+
+  <span class='comment'># Redis内のデータを書き換える
+</span>  <span class='kw'>def</span> <span class='id identifier rubyid_dump_data'>dump_data</span>
+    <span class='ivar'>@data</span><span class='lbracket'>[</span><span class='symbol'>:updated_at</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='const'>Time</span><span class='period'>.</span><span class='id identifier rubyid_now'>now</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span>
+    <span class='ivar'>@redis</span><span class='period'>.</span><span class='id identifier rubyid_set'>set</span><span class='lparen'>(</span><span class='ivar'>@key</span><span class='comma'>,</span> <span class='ivar'>@data</span><span class='period'>.</span><span class='id identifier rubyid_to_msgpack'>to_msgpack</span><span class='rparen'>)</span>
+    <span class='ivar'>@redis</span><span class='period'>.</span><span class='id identifier rubyid_expire'>expire</span><span class='lparen'>(</span><span class='ivar'>@key</span><span class='comma'>,</span> <span class='const'>Beecart</span><span class='period'>.</span><span class='id identifier rubyid_config'>config</span><span class='period'>.</span><span class='id identifier rubyid_expire_time'>expire_time</span><span class='rparen'>)</span>
+  <span class='kw'>end</span>
+
+  <span class='comment'># ランダムな文字列を生成
+</span>  <span class='kw'>def</span> <span class='id identifier rubyid_rand_key'>rand_key</span>
+    <span class='lparen'>(</span><span class='int'>0</span><span class='op'>...</span><span class='int'>8</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_map'>map</span> <span class='lbrace'>{</span> <span class='lparen'>(</span><span class='int'>65</span> <span class='op'>+</span> <span class='id identifier rubyid_rand'>rand</span><span class='lparen'>(</span><span class='int'>26</span><span class='rparen'>)</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_chr'>chr</span> <span class='rbrace'>}</span><span class='period'>.</span><span class='id identifier rubyid_join'>join</span><span class='period'>.</span><span class='id identifier rubyid_to_sym'>to_sym</span>
+  <span class='kw'>end</span>
+
+  <span class='comment'># HashのKeyをシンボルにして返却
+</span>  <span class='comment'># @return シンボルにされたHash
+</span>  <span class='kw'>def</span> <span class='id identifier rubyid_symbolize'>symbolize</span> <span class='id identifier rubyid_hash'>hash</span>
+    <span class='id identifier rubyid_hash'>hash</span><span class='period'>.</span><span class='id identifier rubyid_inject'>inject</span><span class='lparen'>(</span><span class='lbrace'>{</span><span class='rbrace'>}</span><span class='rparen'>)</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_res'>res</span><span class='comma'>,</span><span class='lparen'>(</span><span class='id identifier rubyid_key'>key</span><span class='comma'>,</span> <span class='id identifier rubyid_val'>val</span><span class='rparen'>)</span><span class='op'>|</span>
+      <span class='id identifier rubyid_res'>res</span><span class='lbracket'>[</span><span class='id identifier rubyid_key'>key</span><span class='period'>.</span><span class='id identifier rubyid_to_sym'>to_sym</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='id identifier rubyid_val'>val</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span><span class='lparen'>(</span><span class='const'>Hash</span><span class='rparen'>)</span> <span class='op'>?</span> <span class='id identifier rubyid_symbolize'>symbolize</span><span class='lparen'>(</span><span class='id identifier rubyid_val'>val</span><span class='rparen'>)</span> <span class='op'>:</span> <span class='id identifier rubyid_val'>val</span>
+      <span class='id identifier rubyid_res'>res</span>
+    <span class='kw'>end</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id=""></span>
+      <div class="method_details ">
+  <h3 class="signature " id="redis-instance_method">
+  
+    - (<tt>Object</tt>) <strong>redis</strong>  <span class="extras">(readonly)</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Returns redisとのコネクションを持ったオブジェクト</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Object</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>redisとのコネクションを持ったオブジェクト</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175
+176
+177
+178
+179
+180
+181
+182
+183
+184
+185
+186
+187
+188
+189
+190
+191
+192
+193
+194
+195
+196
+197
+198
+199</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/beecart/cart.rb', line 26</span>
+
+<span class='kw'>class</span> <span class='const'>Cart</span>
+
+  <span class='id identifier rubyid_attr_reader'>attr_reader</span> <span class='symbol'>:key</span>
+
+  <span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span><span class='lparen'>(</span><span class='id identifier rubyid_cart_id'>cart_id</span><span class='op'>=</span><span class='kw'>nil</span><span class='rparen'>)</span>
+    <span class='ivar'>@redis</span> <span class='op'>=</span> <span class='const'>Redis</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='const'>Beecart</span><span class='period'>.</span><span class='id identifier rubyid_config'>config</span><span class='period'>.</span><span class='id identifier rubyid_redis'>redis</span><span class='rparen'>)</span>
+    <span class='ivar'>@key</span>   <span class='op'>=</span> <span class='id identifier rubyid_cart_id'>cart_id</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span> <span class='op'>?</span> <span class='const'>SecureRandom</span><span class='period'>.</span><span class='id identifier rubyid_hex'>hex</span> <span class='op'>:</span> <span class='id identifier rubyid_cart_id'>cart_id</span>
+    <span class='ivar'>@data</span>  <span class='op'>=</span> <span class='id identifier rubyid_data'>data</span>
+  <span class='kw'>end</span>
+
+  <span class='comment'># 保存されているデーターをredisから取り出す。
+</span>  <span class='comment'>#
+</span>  <span class='comment'># @return [Hash]
+</span>  <span class='kw'>def</span> <span class='id identifier rubyid_data'>data</span>
+    <span class='kw'>if</span> <span class='ivar'>@data</span>
+      <span class='ivar'>@data</span>
+    <span class='kw'>else</span>
+      <span class='id identifier rubyid_load_data'>load_data</span><span class='lparen'>(</span><span class='ivar'>@redis</span><span class='period'>.</span><span class='id identifier rubyid_get'>get</span><span class='lparen'>(</span><span class='ivar'>@key</span><span class='rparen'>)</span><span class='rparen'>)</span>
+    <span class='kw'>end</span>
+  <span class='kw'>end</span>
+
+  <span class='comment'># カート内のitemsを返却
+</span>  <span class='comment'># @return [Hash]
+</span>  <span class='kw'>def</span> <span class='id identifier rubyid_items'>items</span>
+    <span class='id identifier rubyid_data'>data</span><span class='lbracket'>[</span><span class='symbol'>:items</span><span class='rbracket'>]</span>
+  <span class='kw'>end</span>
+
+  <span class='comment'># カート内の商品の合計金額を計算する
+</span>  <span class='comment'>#
+</span>  <span class='comment'># @return [Integer] 税抜き合計金額
+</span>  <span class='kw'>def</span> <span class='id identifier rubyid_total_price'>total_price</span>
+    <span class='id identifier rubyid_data'>data</span><span class='lbracket'>[</span><span class='symbol'>:items</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_inject'>inject</span><span class='lparen'>(</span><span class='int'>0</span><span class='rparen'>)</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_res'>res</span><span class='comma'>,</span> <span class='lparen'>(</span><span class='id identifier rubyid_key'>key</span><span class='comma'>,</span> <span class='id identifier rubyid_item'>item</span><span class='rparen'>)</span><span class='op'>|</span>
+      <span class='id identifier rubyid_res'>res</span> <span class='op'>+=</span> <span class='id identifier rubyid_item'>item</span><span class='lbracket'>[</span><span class='symbol'>:price</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_to_i'>to_i</span> <span class='op'>*</span> <span class='id identifier rubyid_item'>item</span><span class='lbracket'>[</span><span class='symbol'>:quantity</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_to_i'>to_i</span>
+      <span class='id identifier rubyid_res'>res</span>
+    <span class='kw'>end</span>
+  <span class='kw'>end</span>
+
+  <span class='comment'># カート内の商品の税込み合計金額を計算する
+</span>  <span class='comment'>#
+</span>  <span class='comment'># @return [Integer] 税込み合計金額
+</span>  <span class='kw'>def</span> <span class='id identifier rubyid_total_price_with_tax'>total_price_with_tax</span>
+    <span class='id identifier rubyid_data'>data</span><span class='lbracket'>[</span><span class='symbol'>:items</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_inject'>inject</span><span class='lparen'>(</span><span class='int'>0</span><span class='rparen'>)</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_res'>res</span><span class='comma'>,</span> <span class='lparen'>(</span><span class='id identifier rubyid_key'>key</span><span class='comma'>,</span> <span class='id identifier rubyid_item'>item</span><span class='rparen'>)</span><span class='op'>|</span>
+      <span class='id identifier rubyid_res'>res</span> <span class='op'>+=</span> <span class='id identifier rubyid_item'>item</span><span class='lbracket'>[</span><span class='symbol'>:price</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_to_i'>to_i</span> <span class='op'>*</span> <span class='id identifier rubyid_item'>item</span><span class='lbracket'>[</span><span class='symbol'>:quantity</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_to_i'>to_i</span> <span class='op'>*</span> <span class='const'>Beecart</span><span class='period'>.</span><span class='id identifier rubyid_config'>config</span><span class='period'>.</span><span class='id identifier rubyid_tax_rate'>tax_rate</span>
+      <span class='id identifier rubyid_res'>res</span>
+    <span class='kw'>end</span>
+  <span class='kw'>end</span>
+
+  <span class='comment'># 指定された商品を追加する
+</span>  <span class='comment'>#
+</span>  <span class='comment'># @param [Hash] item_info 追加する商品の情報
+</span>  <span class='comment'># @option item_info [Integer] :price 商品の値段
+</span>  <span class='comment'># @option item_info [Integer] :quantity (0) 購入希望個数
+</span>  <span class='kw'>def</span> <span class='id identifier rubyid_add_item'>add_item</span><span class='lparen'>(</span><span class='id identifier rubyid_item_info'>item_info</span><span class='op'>=</span><span class='lbrace'>{</span> <span class='label'>quantity:</span> <span class='int'>0</span><span class='rbrace'>}</span><span class='rparen'>)</span>
+
+    <span class='kw'>unless</span> <span class='id identifier rubyid_item_info'>item_info</span><span class='period'>.</span><span class='id identifier rubyid_has_key?'>has_key?</span><span class='lparen'>(</span><span class='symbol'>:price</span><span class='rparen'>)</span>
+      <span class='id identifier rubyid_raise'>raise</span> <span class='const'>Error</span><span class='comma'>,</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Price needs to be passed when adding a item to cart.</span><span class='tstring_end'>&quot;</span></span>
+    <span class='kw'>end</span>
+
+    <span class='kw'>unless</span> <span class='id identifier rubyid_item_info'>item_info</span><span class='period'>.</span><span class='id identifier rubyid_has_key?'>has_key?</span><span class='lparen'>(</span><span class='symbol'>:quantity</span><span class='rparen'>)</span>
+      <span class='id identifier rubyid_raise'>raise</span> <span class='const'>Error</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Quantity needs to be passed when adding a item to cart.</span><span class='tstring_end'>&quot;</span></span>
+    <span class='kw'>end</span>
+
+    <span class='ivar'>@data</span><span class='lbracket'>[</span><span class='symbol'>:items</span><span class='rbracket'>]</span><span class='lbracket'>[</span><span class='id identifier rubyid_rand_key'>rand_key</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='id identifier rubyid_item_info'>item_info</span>
+
+    <span class='id identifier rubyid_dump_data'>dump_data</span>
+  <span class='kw'>end</span>
+
+  <span class='comment'># 購入データを追加する
+</span>  <span class='comment'>#
+</span>  <span class='comment'># @param [String] key 追加するデータの識別子
+</span>  <span class='comment'># @param [Hash] data 追加するデータ
+</span>  <span class='comment'># @return [Boolean]
+</span>  <span class='kw'>def</span> <span class='id identifier rubyid_append_info'>append_info</span><span class='lparen'>(</span><span class='id identifier rubyid_key'>key</span><span class='comma'>,</span> <span class='id identifier rubyid_data'>data</span><span class='rparen'>)</span>
+    <span class='kw'>if</span> <span class='id identifier rubyid_send'>send</span><span class='lparen'>(</span><span class='id identifier rubyid_key'>key</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span> <span class='op'>+</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>_validate</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_data'>data</span><span class='rparen'>)</span>
+      <span class='ivar'>@data</span><span class='lbracket'>[</span><span class='id identifier rubyid_key'>key</span><span class='period'>.</span><span class='id identifier rubyid_to_sym'>to_sym</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='id identifier rubyid_data'>data</span>
+      <span class='id identifier rubyid_dump_data'>dump_data</span>
+    <span class='kw'>else</span>
+      <span class='kw'>false</span>
+    <span class='kw'>end</span>
+  <span class='kw'>end</span>
+
+  <span class='comment'># 指定されたkeyのアイテムを削除する
+</span>  <span class='comment'>#
+</span>  <span class='comment'># @param [String] key 削除するアイテムのレコード
+</span>  <span class='kw'>def</span> <span class='id identifier rubyid_remove_item'>remove_item</span><span class='lparen'>(</span><span class='id identifier rubyid_key'>key</span><span class='rparen'>)</span>
+    <span class='ivar'>@data</span><span class='lbracket'>[</span><span class='symbol'>:items</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_delete'>delete</span><span class='lparen'>(</span><span class='id identifier rubyid_key'>key</span><span class='period'>.</span><span class='id identifier rubyid_to_sym'>to_sym</span><span class='rparen'>)</span>
+
+    <span class='id identifier rubyid_dump_data'>dump_data</span>
+  <span class='kw'>end</span>
+
+  <span class='comment'># 指定されたkeyにあるデータのquantityを変更する
+</span>  <span class='comment'>#
+</span>  <span class='comment'># @param [String] key
+</span>  <span class='comment'># @param [Integer] quantity
+</span>  <span class='comment'># @return [Boolean]
+</span>  <span class='kw'>def</span> <span class='id identifier rubyid_change_quantity_of'>change_quantity_of</span> <span class='id identifier rubyid_key'>key</span><span class='comma'>,</span> <span class='id identifier rubyid_quantity'>quantity</span>
+    <span class='ivar'>@data</span><span class='lbracket'>[</span><span class='symbol'>:items</span><span class='rbracket'>]</span><span class='lbracket'>[</span><span class='id identifier rubyid_key'>key</span><span class='rbracket'>]</span><span class='lbracket'>[</span><span class='symbol'>:quantity</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='id identifier rubyid_quantity'>quantity</span>
+
+    <span class='id identifier rubyid_dump_data'>dump_data</span>
+  <span class='kw'>end</span>
+
+  <span class='comment'># Redisから削除
+</span>  <span class='kw'>def</span> <span class='id identifier rubyid_destroy'>destroy</span>
+    <span class='ivar'>@redis</span><span class='period'>.</span><span class='id identifier rubyid_del'>del</span><span class='lparen'>(</span><span class='ivar'>@key</span><span class='rparen'>)</span>
+  <span class='kw'>end</span>
+
+  <span class='comment'># 仮計上(与信)をとる
+</span>  <span class='comment'>#
+</span>  <span class='comment'># @param [Hash] payment_info 支払情報
+</span>  <span class='kw'>def</span> <span class='id identifier rubyid_examine_payment'>examine_payment</span> <span class='id identifier rubyid_payment_info'>payment_info</span>
+    <span class='id identifier rubyid_gateway'>gateway</span><span class='period'>.</span><span class='id identifier rubyid_examine'>examine</span> <span class='id identifier rubyid_total_price_with_tax'>total_price_with_tax</span><span class='comma'>,</span> <span class='id identifier rubyid_payment_info'>payment_info</span>
+  <span class='kw'>end</span>
+
+  <span class='comment'># 本計上を取る
+</span>  <span class='comment'>#
+</span>  <span class='comment'># @param [Hash] payment_info 支払情報
+</span>  <span class='kw'>def</span> <span class='id identifier rubyid_charge'>charge</span> <span class='id identifier rubyid_payment_info'>payment_info</span><span class='op'>=</span><span class='lbrace'>{</span><span class='rbrace'>}</span>
+    <span class='const'>Rails</span><span class='period'>.</span><span class='id identifier rubyid_logger'>logger</span><span class='period'>.</span><span class='id identifier rubyid_debug'>debug</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>payment_info =&gt; </span><span class='embexpr_beg'>#{</span> <span class='id identifier rubyid_payment_info'>payment_info</span> <span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
+    <span class='const'>Rails</span><span class='period'>.</span><span class='id identifier rubyid_logger'>logger</span><span class='period'>.</span><span class='id identifier rubyid_debug'>debug</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>total_price =&gt;  </span><span class='embexpr_beg'>#{</span> <span class='id identifier rubyid_total_price_with_tax'>total_price_with_tax</span> <span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
+
+    <span class='id identifier rubyid_gateway'>gateway</span><span class='period'>.</span><span class='id identifier rubyid_charge'>charge</span> <span class='id identifier rubyid_total_price_with_tax'>total_price_with_tax</span><span class='comma'>,</span> <span class='id identifier rubyid_payment_info'>payment_info</span>
+  <span class='kw'>end</span>
+
+  <span class='id identifier rubyid_private'>private</span>
+
+  <span class='kw'>def</span> <span class='id identifier rubyid_gateway'>gateway</span> <span class='id identifier rubyid_name'>name</span><span class='op'>=</span><span class='kw'>nil</span>
+    <span class='id identifier rubyid_klass'>klass</span> <span class='op'>=</span> <span class='id identifier rubyid_name'>name</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span> <span class='op'>?</span>
+      <span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Beecart::Gateway::</span><span class='tstring_end'>&quot;</span></span> <span class='op'>+</span> <span class='const'>Beecart</span><span class='period'>.</span><span class='id identifier rubyid_config'>config</span><span class='period'>.</span><span class='id identifier rubyid_default_gateway'>default_gateway</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span><span class='period'>.</span><span class='id identifier rubyid_camelize'>camelize</span> <span class='op'>+</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Gateway</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_constantize'>constantize</span> <span class='op'>:</span> <span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Beecart::Gateway::</span><span class='tstring_end'>&quot;</span></span> <span class='op'>+</span> <span class='id identifier rubyid_name'>name</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span><span class='period'>.</span><span class='id identifier rubyid_camelize'>camelize</span> <span class='op'>+</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Gateway</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_constantize'>constantize</span>
+
+    <span class='id identifier rubyid_klass'>klass</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span>
+  <span class='kw'>end</span>
+
+  <span class='comment'># Redis内から取ってきたデータをデシリアイズして返却。
+</span>  <span class='comment'># またdataがnilの場合はdataのひな形を返却
+</span>  <span class='comment'>#
+</span>  <span class='comment'># @param [Hash, nil]
+</span>  <span class='kw'>def</span> <span class='id identifier rubyid_load_data'>load_data</span><span class='lparen'>(</span><span class='id identifier rubyid_data'>data</span><span class='rparen'>)</span>
+    <span class='kw'>if</span> <span class='id identifier rubyid_data'>data</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span>
+      <span class='lbrace'>{</span>
+        <span class='label'>items:</span> <span class='lbrace'>{</span><span class='rbrace'>}</span><span class='comma'>,</span>
+        <span class='label'>user_id:</span> <span class='kw'>nil</span><span class='comma'>,</span>
+        <span class='label'>shipping_address:</span> <span class='lbrace'>{</span><span class='rbrace'>}</span><span class='comma'>,</span>
+        <span class='label'>billing_address:</span> <span class='lbrace'>{</span><span class='rbrace'>}</span><span class='comma'>,</span>
+        <span class='label'>credit_card:</span> <span class='lbrace'>{</span><span class='rbrace'>}</span><span class='comma'>,</span>
+        <span class='label'>shipping_instruction:</span> <span class='lbrace'>{</span><span class='rbrace'>}</span><span class='comma'>,</span>
+        <span class='label'>created_at:</span> <span class='const'>Time</span><span class='period'>.</span><span class='id identifier rubyid_now'>now</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span><span class='comma'>,</span>
+        <span class='label'>updated_at:</span> <span class='const'>Time</span><span class='period'>.</span><span class='id identifier rubyid_now'>now</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span>
+      <span class='rbrace'>}</span>
+    <span class='kw'>else</span>
+      <span class='id identifier rubyid_symbolize'>symbolize</span><span class='lparen'>(</span><span class='const'>MessagePack</span><span class='period'>.</span><span class='id identifier rubyid_unpack'>unpack</span><span class='lparen'>(</span><span class='id identifier rubyid_data'>data</span><span class='rparen'>)</span><span class='rparen'>)</span>
+    <span class='kw'>end</span>
+  <span class='kw'>end</span>
+
+  <span class='comment'># Redis内のデータを書き換える
+</span>  <span class='kw'>def</span> <span class='id identifier rubyid_dump_data'>dump_data</span>
+    <span class='ivar'>@data</span><span class='lbracket'>[</span><span class='symbol'>:updated_at</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='const'>Time</span><span class='period'>.</span><span class='id identifier rubyid_now'>now</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span>
+    <span class='ivar'>@redis</span><span class='period'>.</span><span class='id identifier rubyid_set'>set</span><span class='lparen'>(</span><span class='ivar'>@key</span><span class='comma'>,</span> <span class='ivar'>@data</span><span class='period'>.</span><span class='id identifier rubyid_to_msgpack'>to_msgpack</span><span class='rparen'>)</span>
+    <span class='ivar'>@redis</span><span class='period'>.</span><span class='id identifier rubyid_expire'>expire</span><span class='lparen'>(</span><span class='ivar'>@key</span><span class='comma'>,</span> <span class='const'>Beecart</span><span class='period'>.</span><span class='id identifier rubyid_config'>config</span><span class='period'>.</span><span class='id identifier rubyid_expire_time'>expire_time</span><span class='rparen'>)</span>
+  <span class='kw'>end</span>
+
+  <span class='comment'># ランダムな文字列を生成
+</span>  <span class='kw'>def</span> <span class='id identifier rubyid_rand_key'>rand_key</span>
+    <span class='lparen'>(</span><span class='int'>0</span><span class='op'>...</span><span class='int'>8</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_map'>map</span> <span class='lbrace'>{</span> <span class='lparen'>(</span><span class='int'>65</span> <span class='op'>+</span> <span class='id identifier rubyid_rand'>rand</span><span class='lparen'>(</span><span class='int'>26</span><span class='rparen'>)</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_chr'>chr</span> <span class='rbrace'>}</span><span class='period'>.</span><span class='id identifier rubyid_join'>join</span><span class='period'>.</span><span class='id identifier rubyid_to_sym'>to_sym</span>
+  <span class='kw'>end</span>
+
+  <span class='comment'># HashのKeyをシンボルにして返却
+</span>  <span class='comment'># @return シンボルにされたHash
+</span>  <span class='kw'>def</span> <span class='id identifier rubyid_symbolize'>symbolize</span> <span class='id identifier rubyid_hash'>hash</span>
+    <span class='id identifier rubyid_hash'>hash</span><span class='period'>.</span><span class='id identifier rubyid_inject'>inject</span><span class='lparen'>(</span><span class='lbrace'>{</span><span class='rbrace'>}</span><span class='rparen'>)</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_res'>res</span><span class='comma'>,</span><span class='lparen'>(</span><span class='id identifier rubyid_key'>key</span><span class='comma'>,</span> <span class='id identifier rubyid_val'>val</span><span class='rparen'>)</span><span class='op'>|</span>
+      <span class='id identifier rubyid_res'>res</span><span class='lbracket'>[</span><span class='id identifier rubyid_key'>key</span><span class='period'>.</span><span class='id identifier rubyid_to_sym'>to_sym</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='id identifier rubyid_val'>val</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span><span class='lparen'>(</span><span class='const'>Hash</span><span class='rparen'>)</span> <span class='op'>?</span> <span class='id identifier rubyid_symbolize'>symbolize</span><span class='lparen'>(</span><span class='id identifier rubyid_val'>val</span><span class='rparen'>)</span> <span class='op'>:</span> <span class='id identifier rubyid_val'>val</span>
+      <span class='id identifier rubyid_res'>res</span>
+    <span class='kw'>end</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+
+  <div id="instance_method_details" class="method_details_list">
+    <h2>Instance Method Details</h2>
+
+    
+      <div class="method_details first">
+  <h3 class="signature first" id="add_item-instance_method">
+  
+    - (<tt>Object</tt>) <strong>add_item</strong>(item_info = { quantity: 0}) 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>指定された商品を追加する</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>item_info</span>
+      
+      
+        <span class='type'>(<tt>Hash</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>{ quantity: 0}</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>追加する商品の情報</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+  
+    
+    
+    <p class="tag_title">Options Hash (<tt>item_info</tt>):</p>
+    <ul class="option">
+      
+        <li>
+          <span class="name">:price</span>
+          <span class="type">(<tt>Integer</tt>)</span>
+          <span class="default">
+            
+          </span>
+          
+            &mdash; <div class='inline'>
+<p>商品の値段</p>
+</div>
+          
+        </li>
+      
+        <li>
+          <span class="name">:quantity</span>
+          <span class="type">(<tt>Integer</tt>)</span>
+          <span class="default">
+            
+              &mdash; default:
+              <tt>0</tt>
+            
+          </span>
+          
+            &mdash; <div class='inline'>
+<p>購入希望個数</p>
+</div>
+          
+        </li>
+      
+    </ul>
+  
+
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/beecart/cart.rb', line 78</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_add_item'>add_item</span><span class='lparen'>(</span><span class='id identifier rubyid_item_info'>item_info</span><span class='op'>=</span><span class='lbrace'>{</span> <span class='label'>quantity:</span> <span class='int'>0</span><span class='rbrace'>}</span><span class='rparen'>)</span>
+
+  <span class='kw'>unless</span> <span class='id identifier rubyid_item_info'>item_info</span><span class='period'>.</span><span class='id identifier rubyid_has_key?'>has_key?</span><span class='lparen'>(</span><span class='symbol'>:price</span><span class='rparen'>)</span>
+    <span class='id identifier rubyid_raise'>raise</span> <span class='const'>Error</span><span class='comma'>,</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Price needs to be passed when adding a item to cart.</span><span class='tstring_end'>&quot;</span></span>
+  <span class='kw'>end</span>
+
+  <span class='kw'>unless</span> <span class='id identifier rubyid_item_info'>item_info</span><span class='period'>.</span><span class='id identifier rubyid_has_key?'>has_key?</span><span class='lparen'>(</span><span class='symbol'>:quantity</span><span class='rparen'>)</span>
+    <span class='id identifier rubyid_raise'>raise</span> <span class='const'>Error</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Quantity needs to be passed when adding a item to cart.</span><span class='tstring_end'>&quot;</span></span>
+  <span class='kw'>end</span>
+
+  <span class='ivar'>@data</span><span class='lbracket'>[</span><span class='symbol'>:items</span><span class='rbracket'>]</span><span class='lbracket'>[</span><span class='id identifier rubyid_rand_key'>rand_key</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='id identifier rubyid_item_info'>item_info</span>
+
+  <span class='id identifier rubyid_dump_data'>dump_data</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="append_info-instance_method">
+  
+    - (<tt>Boolean</tt>) <strong>append_info</strong>(key, data) 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>購入データを追加する</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>key</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>追加するデータの識別子</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>data</span>
+      
+      
+        <span class='type'>(<tt>Hash</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>追加するデータ</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+98
+99
+100
+101
+102
+103
+104
+105</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/beecart/cart.rb', line 98</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_append_info'>append_info</span><span class='lparen'>(</span><span class='id identifier rubyid_key'>key</span><span class='comma'>,</span> <span class='id identifier rubyid_data'>data</span><span class='rparen'>)</span>
+  <span class='kw'>if</span> <span class='id identifier rubyid_send'>send</span><span class='lparen'>(</span><span class='id identifier rubyid_key'>key</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span> <span class='op'>+</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>_validate</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_data'>data</span><span class='rparen'>)</span>
+    <span class='ivar'>@data</span><span class='lbracket'>[</span><span class='id identifier rubyid_key'>key</span><span class='period'>.</span><span class='id identifier rubyid_to_sym'>to_sym</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='id identifier rubyid_data'>data</span>
+    <span class='id identifier rubyid_dump_data'>dump_data</span>
+  <span class='kw'>else</span>
+    <span class='kw'>false</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="change_quantity_of-instance_method">
+  
+    - (<tt>Boolean</tt>) <strong>change_quantity_of</strong>(key, quantity) 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>指定されたkeyにあるデータのquantityを変更する</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>key</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>quantity</span>
+      
+      
+        <span class='type'>(<tt>Integer</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+121
+122
+123
+124
+125</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/beecart/cart.rb', line 121</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_change_quantity_of'>change_quantity_of</span> <span class='id identifier rubyid_key'>key</span><span class='comma'>,</span> <span class='id identifier rubyid_quantity'>quantity</span>
+  <span class='ivar'>@data</span><span class='lbracket'>[</span><span class='symbol'>:items</span><span class='rbracket'>]</span><span class='lbracket'>[</span><span class='id identifier rubyid_key'>key</span><span class='rbracket'>]</span><span class='lbracket'>[</span><span class='symbol'>:quantity</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='id identifier rubyid_quantity'>quantity</span>
+
+  <span class='id identifier rubyid_dump_data'>dump_data</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="charge-instance_method">
+  
+    - (<tt>Object</tt>) <strong>charge</strong>(payment_info = {}) 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>本計上を取る</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>payment_info</span>
+      
+      
+        <span class='type'>(<tt>Hash</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>{}</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>支払情報</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+142
+143
+144
+145
+146
+147</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/beecart/cart.rb', line 142</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_charge'>charge</span> <span class='id identifier rubyid_payment_info'>payment_info</span><span class='op'>=</span><span class='lbrace'>{</span><span class='rbrace'>}</span>
+  <span class='const'>Rails</span><span class='period'>.</span><span class='id identifier rubyid_logger'>logger</span><span class='period'>.</span><span class='id identifier rubyid_debug'>debug</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>payment_info =&gt; </span><span class='embexpr_beg'>#{</span> <span class='id identifier rubyid_payment_info'>payment_info</span> <span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
+  <span class='const'>Rails</span><span class='period'>.</span><span class='id identifier rubyid_logger'>logger</span><span class='period'>.</span><span class='id identifier rubyid_debug'>debug</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>total_price =&gt;  </span><span class='embexpr_beg'>#{</span> <span class='id identifier rubyid_total_price_with_tax'>total_price_with_tax</span> <span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
+
+  <span class='id identifier rubyid_gateway'>gateway</span><span class='period'>.</span><span class='id identifier rubyid_charge'>charge</span> <span class='id identifier rubyid_total_price_with_tax'>total_price_with_tax</span><span class='comma'>,</span> <span class='id identifier rubyid_payment_info'>payment_info</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="destroy-instance_method">
+  
+    - (<tt>Object</tt>) <strong>destroy</strong> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Redisから削除</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+128
+129
+130</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/beecart/cart.rb', line 128</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_destroy'>destroy</span>
+  <span class='ivar'>@redis</span><span class='period'>.</span><span class='id identifier rubyid_del'>del</span><span class='lparen'>(</span><span class='ivar'>@key</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="examine_payment-instance_method">
+  
+    - (<tt>Object</tt>) <strong>examine_payment</strong>(payment_info) 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>仮計上(与信)をとる</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>payment_info</span>
+      
+      
+        <span class='type'>(<tt>Hash</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>支払情報</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+135
+136
+137</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/beecart/cart.rb', line 135</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_examine_payment'>examine_payment</span> <span class='id identifier rubyid_payment_info'>payment_info</span>
+  <span class='id identifier rubyid_gateway'>gateway</span><span class='period'>.</span><span class='id identifier rubyid_examine'>examine</span> <span class='id identifier rubyid_total_price_with_tax'>total_price_with_tax</span><span class='comma'>,</span> <span class='id identifier rubyid_payment_info'>payment_info</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="items-instance_method">
+  
+    - (<tt>Hash</tt>) <strong>items</strong> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>カート内のitemsを返却</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Hash</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+49
+50
+51</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/beecart/cart.rb', line 49</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_items'>items</span>
+  <span class='id identifier rubyid_data'>data</span><span class='lbracket'>[</span><span class='symbol'>:items</span><span class='rbracket'>]</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="remove_item-instance_method">
+  
+    - (<tt>Object</tt>) <strong>remove_item</strong>(key) 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>指定されたkeyのアイテムを削除する</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>key</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>削除するアイテムのレコード</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+110
+111
+112
+113
+114</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/beecart/cart.rb', line 110</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_remove_item'>remove_item</span><span class='lparen'>(</span><span class='id identifier rubyid_key'>key</span><span class='rparen'>)</span>
+  <span class='ivar'>@data</span><span class='lbracket'>[</span><span class='symbol'>:items</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_delete'>delete</span><span class='lparen'>(</span><span class='id identifier rubyid_key'>key</span><span class='period'>.</span><span class='id identifier rubyid_to_sym'>to_sym</span><span class='rparen'>)</span>
+
+  <span class='id identifier rubyid_dump_data'>dump_data</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="total_price-instance_method">
+  
+    - (<tt>Integer</tt>) <strong>total_price</strong> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>カート内の商品の合計金額を計算する</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Integer</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>税抜き合計金額</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+56
+57
+58
+59
+60
+61</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/beecart/cart.rb', line 56</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_total_price'>total_price</span>
+  <span class='id identifier rubyid_data'>data</span><span class='lbracket'>[</span><span class='symbol'>:items</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_inject'>inject</span><span class='lparen'>(</span><span class='int'>0</span><span class='rparen'>)</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_res'>res</span><span class='comma'>,</span> <span class='lparen'>(</span><span class='id identifier rubyid_key'>key</span><span class='comma'>,</span> <span class='id identifier rubyid_item'>item</span><span class='rparen'>)</span><span class='op'>|</span>
+    <span class='id identifier rubyid_res'>res</span> <span class='op'>+=</span> <span class='id identifier rubyid_item'>item</span><span class='lbracket'>[</span><span class='symbol'>:price</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_to_i'>to_i</span> <span class='op'>*</span> <span class='id identifier rubyid_item'>item</span><span class='lbracket'>[</span><span class='symbol'>:quantity</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_to_i'>to_i</span>
+    <span class='id identifier rubyid_res'>res</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="total_price_with_tax-instance_method">
+  
+    - (<tt>Integer</tt>) <strong>total_price_with_tax</strong> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>カート内の商品の税込み合計金額を計算する</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Integer</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>税込み合計金額</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+66
+67
+68
+69
+70
+71</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/beecart/cart.rb', line 66</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_total_price_with_tax'>total_price_with_tax</span>
+  <span class='id identifier rubyid_data'>data</span><span class='lbracket'>[</span><span class='symbol'>:items</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_inject'>inject</span><span class='lparen'>(</span><span class='int'>0</span><span class='rparen'>)</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_res'>res</span><span class='comma'>,</span> <span class='lparen'>(</span><span class='id identifier rubyid_key'>key</span><span class='comma'>,</span> <span class='id identifier rubyid_item'>item</span><span class='rparen'>)</span><span class='op'>|</span>
+    <span class='id identifier rubyid_res'>res</span> <span class='op'>+=</span> <span class='id identifier rubyid_item'>item</span><span class='lbracket'>[</span><span class='symbol'>:price</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_to_i'>to_i</span> <span class='op'>*</span> <span class='id identifier rubyid_item'>item</span><span class='lbracket'>[</span><span class='symbol'>:quantity</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_to_i'>to_i</span> <span class='op'>*</span> <span class='const'>Beecart</span><span class='period'>.</span><span class='id identifier rubyid_config'>config</span><span class='period'>.</span><span class='id identifier rubyid_tax_rate'>tax_rate</span>
+    <span class='id identifier rubyid_res'>res</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+</div>
+
+    <div id="footer">
+  Generated on Fri Jan 10 13:51:19 2014 by
+  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.8.7.3 (ruby-2.0.0).
+</div>
+
+  </body>
+</html>

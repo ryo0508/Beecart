@@ -84,7 +84,18 @@
 </dl>
 <div class="clear"></div>
 
+<h2>Overview</h2><div class="docstring">
+  <div class="discussion">
+    
+<p>ApplicationControllerや任意のControllerの中でinclude</p>
 
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div>
 
 
 
@@ -102,7 +113,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#current_cart-instance_method" title="#current_cart (instance method)">- (Object) <strong>current_cart</strong> </a>
+      <a href="#current_cart-instance_method" title="#current_cart (instance method)">- (ShoppingCart) <strong>current_cart</strong> </a>
     
 
     
@@ -116,7 +127,9 @@
   
 
   
-    <span class="summary_desc"><div class='inline'></div></span>
+    <span class="summary_desc"><div class='inline'>
+<p>セッションで保持しているキーをもとに自分が保持しているカートを返却.</p>
+</div></span>
   
 </li>
 
@@ -133,39 +146,63 @@
       <div class="method_details first">
   <h3 class="signature first" id="current_cart-instance_method">
   
-    - (<tt>Object</tt>) <strong>current_cart</strong> 
+    - (<tt>ShoppingCart</tt>) <strong>current_cart</strong> 
   
 
   
 
   
-</h3><table class="source_code">
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>セッションで保持しているキーをもとに自分が保持しているカートを返却</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>ShoppingCart</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
-3
-4
-5
-6
-7
-8
-9
-10
 11
 12
-13</pre>
+13
+14
+15
+16
+17
+18
+19
+20
+21</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/beecart/current_cart.rb', line 3</span>
+      <pre class="code"><span class="info file"># File 'lib/beecart/current_cart.rb', line 11</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_current_cart'>current_cart</span>
   <span class='kw'>if</span> <span class='id identifier rubyid_session'>session</span><span class='lbracket'>[</span><span class='symbol'>:cart_id</span><span class='rbracket'>]</span>
-    <span class='id identifier rubyid_cart'>cart</span> <span class='op'>=</span> <span class='const'>Beecart</span><span class='op'>::</span><span class='const'>ShoppingCart</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='id identifier rubyid_session'>session</span><span class='lbracket'>[</span><span class='symbol'>:cart_id</span><span class='rbracket'>]</span><span class='rparen'>)</span>
+    <span class='id identifier rubyid_cart'>cart</span> <span class='op'>=</span> <span class='const'>Beecart</span><span class='op'>::</span><span class='const'>Cart</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='id identifier rubyid_session'>session</span><span class='lbracket'>[</span><span class='symbol'>:cart_id</span><span class='rbracket'>]</span><span class='rparen'>)</span>
   <span class='kw'>else</span>
-    <span class='id identifier rubyid_session'>session</span><span class='lbracket'>[</span><span class='symbol'>:cart_id</span><span class='rbracket'>]</span> 
-    <span class='id identifier rubyid_cart'>cart</span> <span class='op'>=</span> <span class='const'>Beecart</span><span class='op'>::</span><span class='const'>ShoppingCart</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='rparen'>)</span>
+    <span class='id identifier rubyid_session'>session</span><span class='lbracket'>[</span><span class='symbol'>:cart_id</span><span class='rbracket'>]</span>
+    <span class='id identifier rubyid_cart'>cart</span> <span class='op'>=</span> <span class='const'>Beecart</span><span class='op'>::</span><span class='const'>Cart</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='rparen'>)</span>
     <span class='id identifier rubyid_session'>session</span><span class='lbracket'>[</span><span class='symbol'>:cart_id</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='id identifier rubyid_cart'>cart</span><span class='period'>.</span><span class='id identifier rubyid_key'>key</span>
   <span class='kw'>end</span>
 
@@ -181,7 +218,7 @@
 </div>
 
     <div id="footer">
-  Generated on Thu Jan  9 19:53:29 2014 by
+  Generated on Fri Jan 10 13:51:18 2014 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.8.7.3 (ruby-2.0.0).
 </div>

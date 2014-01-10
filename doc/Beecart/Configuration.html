@@ -117,7 +117,9 @@
   <span class='label'>redis:</span> <span class='lbrace'>{</span>
     <span class='label'>host:</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>localhost</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span>
     <span class='label'>port:</span> <span class='int'>5555</span>
-  <span class='rbrace'>}</span>
+  <span class='rbrace'>}</span><span class='comma'>,</span>
+  <span class='label'>tax_rate:</span> <span class='float'>0.05</span><span class='comma'>,</span>
+  <span class='label'>default_gateway:</span> <span class='symbol'>:webpay</span>
 <span class='rbrace'>}</span></pre></dd>
       
     </dl>
@@ -128,6 +130,33 @@
 
   <h2>Instance Attribute Summary <small>(<a href="#" class="summary_toggle">collapse</a>)</small></h2>
   <ul class="summary">
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#default_gateway-instance_method" title="#default_gateway (instance method)">- (Object) <strong>default_gateway</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Returns the value of attribute default_gateway.</p>
+</div></span>
+  
+</li>
+
     
       <li class="public ">
   <span class="summary_signature">
@@ -205,6 +234,33 @@
   
     <span class="summary_desc"><div class='inline'>
 <p>Returns the value of attribute redis.</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#tax_rate-instance_method" title="#tax_rate (instance method)">- (Object) <strong>tax_rate</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Returns the value of attribute tax_rate.</p>
 </div></span>
   
 </li>
@@ -335,12 +391,12 @@
       <pre class="lines">
 
 
-29
-30
-31</pre>
+31
+32
+33</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/beecart/configuration.rb', line 29</span>
+      <pre class="code"><span class="info file"># File 'lib/beecart/configuration.rb', line 31</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span>
   <span class='cvar'>@@defaults</span><span class='period'>.</span><span class='id identifier rubyid_each_pair'>each_pair</span><span class='lbrace'>{</span><span class='op'>|</span><span class='id identifier rubyid_k'>k</span><span class='comma'>,</span><span class='id identifier rubyid_v'>v</span><span class='op'>|</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_send'>send</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_k'>k</span><span class='embexpr_end'>}</span><span class='tstring_content'>=</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span><span class='id identifier rubyid_v'>v</span><span class='rparen'>)</span><span class='rbrace'>}</span>
@@ -356,9 +412,52 @@
     <h2>Instance Attribute Details</h2>
     
       
-      <span id="expire_time=-instance_method"></span>
+      <span id="default_gateway=-instance_method"></span>
       <div class="method_details first">
-  <h3 class="signature first" id="expire_time-instance_method">
+  <h3 class="signature first" id="default_gateway-instance_method">
+  
+    - (<tt>Object</tt>) <strong>default_gateway</strong> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Returns the value of attribute default_gateway</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+44
+45
+46</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/beecart/configuration.rb', line 44</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_default_gateway'>default_gateway</span>
+  <span class='ivar'>@default_gateway</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id="expire_time=-instance_method"></span>
+      <div class="method_details ">
+  <h3 class="signature " id="expire_time-instance_method">
   
     - (<tt>Object</tt>) <strong>expire_time</strong> 
   
@@ -383,12 +482,12 @@
       <pre class="lines">
 
 
-42
-43
-44</pre>
+44
+45
+46</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/beecart/configuration.rb', line 42</span>
+      <pre class="code"><span class="info file"># File 'lib/beecart/configuration.rb', line 44</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_expire_time'>expire_time</span>
   <span class='ivar'>@expire_time</span>
@@ -426,12 +525,12 @@
       <pre class="lines">
 
 
-42
-43
-44</pre>
+44
+45
+46</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/beecart/configuration.rb', line 42</span>
+      <pre class="code"><span class="info file"># File 'lib/beecart/configuration.rb', line 44</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_logger'>logger</span>
   <span class='ivar'>@logger</span>
@@ -469,15 +568,58 @@
       <pre class="lines">
 
 
-41
-42
-43</pre>
+43
+44
+45</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/beecart/configuration.rb', line 41</span>
+      <pre class="code"><span class="info file"># File 'lib/beecart/configuration.rb', line 43</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_redis'>redis</span>
   <span class='ivar'>@redis</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id="tax_rate=-instance_method"></span>
+      <div class="method_details ">
+  <h3 class="signature " id="tax_rate-instance_method">
+  
+    - (<tt>Object</tt>) <strong>tax_rate</strong> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Returns the value of attribute tax_rate</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+44
+45
+46</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/beecart/configuration.rb', line 44</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_tax_rate'>tax_rate</span>
+  <span class='ivar'>@tax_rate</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -540,12 +682,12 @@
       <pre class="lines">
 
 
-25
-26
-27</pre>
+27
+28
+29</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/beecart/configuration.rb', line 25</span>
+      <pre class="code"><span class="info file"># File 'lib/beecart/configuration.rb', line 27</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_defaults'>defaults</span>
   <span class='cvar'>@@defaults</span>
@@ -560,7 +702,7 @@
 </div>
 
     <div id="footer">
-  Generated on Thu Jan  9 19:53:29 2014 by
+  Generated on Fri Jan 10 13:51:19 2014 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.8.7.3 (ruby-2.0.0).
 </div>

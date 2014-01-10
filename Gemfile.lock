@@ -2,7 +2,9 @@ PATH
   remote: .
   specs:
     beecart (0.0.2)
+      msgpack (~> 0.5.8)
       rails (~> 4.0.0)
+      redis (~> 3.0.6)
 
 GEM
   remote: https://rubygems.org/
@@ -92,7 +94,5 @@ PLATFORMS
 
 DEPENDENCIES
   beecart!
-  msgpack
-  redis
   sqlite3
   webpay

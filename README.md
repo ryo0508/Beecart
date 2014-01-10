@@ -59,8 +59,8 @@ class YourController < ApplicationController
       item_id:  1,
       price:    5000,
       quantity: 3,
-      any_data: ‘you_may_put_any_data’,
-      …
+      any_data: 'you_may_put_any_data',
+      ...
     )
   end
 
@@ -96,7 +96,8 @@ You may save any data in the cart along with the item data.
 })
 
 puts @cart.data[:user_data][:name]
-# => “Beenos”
+# => "Beenos"
+
 
 puts @cart.data[:user_data][:age]
 # => 0

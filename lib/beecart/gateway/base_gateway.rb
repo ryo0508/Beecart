@@ -16,7 +16,7 @@ module Beecart
       #
       # @param [Integer] price 与信をかける額
       # @return [Boolean]
-      def examine price; end
+      def authorize price; end
 
     end
   end

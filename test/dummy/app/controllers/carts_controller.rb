@@ -38,11 +38,23 @@ class CartsController < ApplicationController
   def charge
     current_cart.charge({
       card: {
-        :number=>"4242-4242-4242-4242",
-        :exp_month=>"11",
-        :exp_year=>"2014",
-        :cvc=>"123",
-        :name=>"KEI KUBO"
+        :number    => 4012888888881881,
+        :exp_month => 11,
+        :exp_year  => 2014,
+        :cvc       => 123,
+        :name      => "KEI KUBO"
+      }
+    })
+  end
+
+  def examine
+    current_cart.examine({
+      card: {
+        :number    => 4012888888881881,
+        :exp_month => 11,
+        :exp_year  => 2014,
+        :cvc       => 123,
+        :name      => "KEI KUBO"
       }
     })
 

@@ -45,6 +45,7 @@ module Beecart
     end
 
     # カート内のitemsを返却
+    #
     # @return [Hash]
     def items
       data[:items]
@@ -56,7 +57,7 @@ module Beecart
     def total_price
       data[:items].inject(0) do |res, (key, item)|
         res += item[:price].to_i * item[:quantity].to_i
-        res
+        res.to_i
       end
     end
 
@@ -66,7 +67,7 @@ module Beecart
     def total_price_with_tax
       data[:items].inject(0) do |res, (key, item)|
         res += item[:price].to_i * item[:quantity].to_i * Beecart.config.tax_rate
-        res
+        res.ceil.to_i
       end
     end
 
@@ -131,18 +132,17 @@ module Beecart
 
     # 仮計上(与信)をとる
     #
-    # @param [Hash] payment_info 支払情報
-    def examine_payment payment_info
-      gateway.examine total_price_with_tax, payment_info
+    # @param  [Hash] payment_info 支払情報
+    # @return [WebPay::Charge]
+    def authorize payment_info={}
+      gateway.authorize total_price_with_tax, payment_info
     end
 
     # 本計上を取る
     #
-    # @param [Hash] payment_info 支払情報
+    # @param  [Hash] payment_info 支払情報
+    # @return [WebPay::Charge]
     def charge payment_info={}
-      Rails.logger.debug "payment_info => #{ payment_info }"
-      Rails.logger.debug "total_price =>  #{ total_price_with_tax }"
-
       gateway.charge total_price_with_tax, payment_info
     end
 
@@ -150,9 +150,14 @@ module Beecart
 
     def gateway name=nil
       klass = name.nil? ?
-        ("Beecart::Gateway::" + Beecart.config.default_gateway.to_s.camelize + "Gateway").constantize : ("Beecart::Gateway::" + name.to_s.camelize + "Gateway").constantize
+        gateway_class_name(Beecart.config.default_gateway).constantize :
+        gateway_class_name(name).constantize
 
       klass.new
+    end
+
+    def gateway_class_name name
+      ["Beecart::Gateway::",name.to_s.camelize,"Gateway"].join('')
     end
 
     # Redis内から取ってきたデータをデシリアイズして返却。

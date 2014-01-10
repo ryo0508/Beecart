@@ -1,0 +1,372 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>
+  Class: Beecart::Gateway::WebpayGateway
+  
+    &mdash; Documentation by YARD 0.8.7.3
+  
+</title>
+
+  <link rel="stylesheet" href="../../css/style.css" type="text/css" charset="utf-8" />
+
+  <link rel="stylesheet" href="../../css/common.css" type="text/css" charset="utf-8" />
+
+<script type="text/javascript" charset="utf-8">
+  hasFrames = window.top.frames.main ? true : false;
+  relpath = '../../';
+  framesUrl = "../../frames.html#!" + escape(window.location.href);
+</script>
+
+
+  <script type="text/javascript" charset="utf-8" src="../../js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="../../js/app.js"></script>
+
+
+  </head>
+  <body>
+    <div id="header">
+      <div id="menu">
+  
+    <a href="../../_index.html">Index (W)</a> &raquo;
+    <span class='title'><span class='object_link'><a href="../../Beecart.html" title="Beecart (module)">Beecart</a></span></span> &raquo; <span class='title'><span class='object_link'><a href="../Gateway.html" title="Beecart::Gateway (module)">Gateway</a></span></span>
+     &raquo; 
+    <span class="title">WebpayGateway</span>
+  
+
+  <div class="noframes"><span class="title">(</span><a href="." target="_top">no frames</a><span class="title">)</span></div>
+</div>
+
+      <div id="search">
+  
+    <a class="full_list_link" id="class_list_link"
+        href="../../class_list.html">
+      Class List
+    </a>
+  
+    <a class="full_list_link" id="method_list_link"
+        href="../../method_list.html">
+      Method List
+    </a>
+  
+    <a class="full_list_link" id="file_list_link"
+        href="../../file_list.html">
+      File List
+    </a>
+  
+</div>
+      <div class="clear"></div>
+    </div>
+
+    <iframe id="search_frame"></iframe>
+
+    <div id="content"><h1>Class: Beecart::Gateway::WebpayGateway
+  
+  
+  
+</h1>
+
+<dl class="box">
+  
+    <dt class="r1">Inherits:</dt>
+    <dd class="r1">
+      <span class="inheritName"><span class='object_link'><a href="BaseGateway.html" title="Beecart::Gateway::BaseGateway (class)">BaseGateway</a></span></span>
+      
+        <ul class="fullTree">
+          <li>Object</li>
+          
+            <li class="next"><span class='object_link'><a href="BaseGateway.html" title="Beecart::Gateway::BaseGateway (class)">BaseGateway</a></span></li>
+          
+            <li class="next">Beecart::Gateway::WebpayGateway</li>
+          
+        </ul>
+        <a href="#" class="inheritanceTree">show all</a>
+      
+      </dd>
+    
+  
+  
+    
+  
+    
+  
+  
+  
+    <dt class="r2 last">Defined in:</dt>
+    <dd class="r2 last">lib/beecart/gateway/webpay_gateway.rb</dd>
+  
+</dl>
+<div class="clear"></div>
+
+
+
+
+
+
+
+
+  
+    <h2>
+      Instance Method Summary
+      <small>(<a href="#" class="summary_toggle">collapse</a>)</small>
+    </h2>
+
+    <ul class="summary">
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#charge-instance_method" title="#charge (instance method)">- (Object) <strong>charge</strong>(price, payment_info) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#examine-instance_method" title="#examine (instance method)">- (Object) <strong>examine</strong>(price, payment_info) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#initialize-instance_method" title="#initialize (instance method)">- (WebpayGateway) <strong>initialize</strong>(*args) </a>
+    
+
+    
+  </span>
+  
+  
+    <span class="note title constructor">constructor</span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>A new instance of WebpayGateway.</p>
+</div></span>
+  
+</li>
+
+      
+    </ul>
+  
+
+
+  
+  
+  
+  
+  
+  <div id="constructor_details" class="method_details_list">
+  <h2>Constructor Details</h2>
+  
+    <div class="method_details first">
+  <h3 class="signature first" id="initialize-instance_method">
+  
+    - (<tt><span class='object_link'><a href="" title="Beecart::Gateway::WebpayGateway (class)">WebpayGateway</a></span></tt>) <strong>initialize</strong>(*args) 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Returns a new instance of WebpayGateway</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>payment_info</span>
+      
+      
+        <span class='type'>(<tt>Hash</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>支払い方法に関してのハッシュ</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+7
+8
+9
+10
+11
+12</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/beecart/gateway/webpay_gateway.rb', line 7</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span> <span class='op'>*</span><span class='id identifier rubyid_args'>args</span>
+  <span class='kw'>super</span>
+
+  <span class='const'>Webpay</span><span class='period'>.</span><span class='id identifier rubyid_api_key'>api_key</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>test_secret_2TLg1y5kU5dye9v2BO9pd8yy</span><span class='tstring_end'>&quot;</span></span>
+  <span class='comment'># raise Error, &quot;You need to set Webpay API Key&quot; if Webpay.api_key.nil?
+</span><span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+  
+</div>
+
+
+  <div id="instance_method_details" class="method_details_list">
+    <h2>Instance Method Details</h2>
+
+    
+      <div class="method_details first">
+  <h3 class="signature first" id="charge-instance_method">
+  
+    - (<tt>Object</tt>) <strong>charge</strong>(price, payment_info) 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/beecart/gateway/webpay_gateway.rb', line 14</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_charge'>charge</span> <span class='id identifier rubyid_price'>price</span><span class='comma'>,</span> <span class='id identifier rubyid_payment_info'>payment_info</span>
+
+  <span class='id identifier rubyid_charge_info'>charge_info</span> <span class='op'>=</span> <span class='lbrace'>{</span>
+    <span class='label'>amount:</span> <span class='id identifier rubyid_price'>price</span><span class='comma'>,</span>
+    <span class='label'>currency:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>jpy</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span>
+    <span class='label'>capture:</span> <span class='kw'>true</span>
+  <span class='rbrace'>}</span><span class='period'>.</span><span class='id identifier rubyid_merge'>merge</span><span class='lparen'>(</span><span class='id identifier rubyid_payment_parser'>payment_parser</span><span class='lparen'>(</span><span class='id identifier rubyid_payment_info'>payment_info</span><span class='rparen'>)</span><span class='rparen'>)</span>
+
+  <span class='const'>WebPay</span><span class='op'>::</span><span class='const'>Charge</span><span class='period'>.</span><span class='id identifier rubyid_create'>create</span><span class='lparen'>(</span><span class='id identifier rubyid_charge_info'>charge_info</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="examine-instance_method">
+  
+    - (<tt>Object</tt>) <strong>examine</strong>(price, payment_info) 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+25
+26
+27
+28
+29
+30
+31
+32
+33</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/beecart/gateway/webpay_gateway.rb', line 25</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_examine'>examine</span> <span class='id identifier rubyid_price'>price</span><span class='comma'>,</span> <span class='id identifier rubyid_payment_info'>payment_info</span>
+  <span class='id identifier rubyid_charge_info'>charge_info</span> <span class='op'>=</span> <span class='lbrace'>{</span>
+    <span class='label'>amount:</span> <span class='id identifier rubyid_price'>price</span><span class='comma'>,</span>
+    <span class='label'>currency:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>jpy</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span>
+    <span class='label'>capture:</span> <span class='kw'>false</span>
+  <span class='rbrace'>}</span><span class='period'>.</span><span class='id identifier rubyid_merge'>merge</span><span class='lparen'>(</span><span class='id identifier rubyid_payment_parser'>payment_parser</span><span class='lparen'>(</span><span class='id identifier rubyid_payment_info'>payment_info</span><span class='rparen'>)</span><span class='rparen'>)</span>
+
+  <span class='const'>WebPay</span><span class='op'>::</span><span class='const'>Charge</span><span class='period'>.</span><span class='id identifier rubyid_create'>create</span><span class='lparen'>(</span><span class='id identifier rubyid_charge_info'>charge_info</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+</div>
+
+    <div id="footer">
+  Generated on Fri Jan 10 13:51:19 2014 by
+  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.8.7.3 (ruby-2.0.0).
+</div>
+
+  </body>
+</html>
