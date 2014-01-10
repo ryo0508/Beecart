@@ -23,7 +23,7 @@ module Beecart
   # @!attribute [r] key
   #   @return [String] カートを識別するためのランダムな文字列
 
-  class ShoppingCart
+  class Cart
 
     attr_reader :key
 
@@ -52,10 +52,20 @@ module Beecart
 
     # カート内の商品の合計金額を計算する
     #
-    # @return [Integer]
-    def total_cost
+    # @return [Integer] 税抜き合計金額
+    def total_price
       data[:items].inject(0) do |res, (key, item)|
         res += item[:price].to_i * item[:quantity].to_i
+        res
+      end
+    end
+
+    # カート内の商品の税込み合計金額を計算する
+    #
+    # @return [Integer] 税込み合計金額
+    def total_price_with_tax
+      data[:items].inject(0) do |res, (key, item)|
+        res += item[:price].to_i * item[:quantity].to_i * Beecart.config.tax_rate
         res
       end
     end
@@ -68,11 +78,11 @@ module Beecart
     def add_item(item_info={ quantity: 0})
 
       unless item_info.has_key?(:price)
-        raise "Price needs to be passed when adding a item to cart."
+        raise Error,"Price needs to be passed when adding a item to cart."
       end
 
       unless item_info.has_key?(:quantity)
-        raise "Quantity needs to be passed when adding a item to cart."
+        raise Error, "Quantity needs to be passed when adding a item to cart."
       end
 
       @data[:items][rand_key] = item_info
@@ -104,6 +114,7 @@ module Beecart
     end
 
     # 指定されたkeyにあるデータのquantityを変更する
+    #
     # @param [String] key
     # @param [Integer] quantity
     # @return [Boolean]

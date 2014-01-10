@@ -19,7 +19,8 @@ module Beecart
       redis: {
         host: 'localhost',
         port: 5555
-      }
+      },
+      tax_rate: 0.05
     }
 
     def self.defaults
@@ -39,7 +40,7 @@ module Beecart
     end
 
     attr_reader   :redis
-    attr_accessor :logger, :expire_time
+    attr_accessor :logger, :expire_time, :tax_rate
   end
 
   def self.config
