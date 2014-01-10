@@ -130,10 +130,30 @@ module Beecart
     end
 
     # 仮計上(与信)をとる
+    #
+    # @param [Hash] payment_info 支払情報
+    def examine_payment payment_info
+      gateway.examine total_price_with_tax, payment_info
+    end
 
     # 本計上を取る
+    #
+    # @param [Hash] payment_info 支払情報
+    def charge payment_info={}
+      Rails.logger.debug "payment_info => #{ payment_info }"
+      Rails.logger.debug "total_price =>  #{ total_price_with_tax }"
+
+      gateway.charge total_price_with_tax, payment_info
+    end
 
     private
+
+    def gateway name=nil
+      klass = name.nil? ?
+        ("Beecart::Gateway::" + Beecart.config.default_gateway.to_s.camelize + "Gateway").constantize : ("Beecart::Gateway::" + name.to_s.camelize + "Gateway").constantize
+
+      klass.new
+    end
 
     # Redis内から取ってきたデータをデシリアイズして返却。
     # またdataがnilの場合はdataのひな形を返却

@@ -2,7 +2,7 @@
 
 module Beecart
   module Gateway
-    class Base
+    class BaseGateway
 
       def initialize *args; end
 

@@ -28,6 +28,12 @@ Beecart.configure do |config|
     port: 5555
   }
 
+  # Default Tax Rate
+  config.tax_rate = 0.05
+
+  # Default Payment Gateway
+  config.default_gateway = :webpay
+
 end
 ```
 

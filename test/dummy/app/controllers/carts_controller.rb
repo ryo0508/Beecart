@@ -35,6 +35,20 @@ class CartsController < ApplicationController
     end
   end
 
+  def charge
+    current_cart.charge({
+      card: {
+        :number=>"4242-4242-4242-4242",
+        :exp_month=>"11",
+        :exp_year=>"2014",
+        :cvc=>"123",
+        :name=>"KEI KUBO"
+      }
+    })
+
+    render :text => 'OK'
+  end
+
   private
 
   def get_current_cart

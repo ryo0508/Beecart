@@ -1,9 +1,4 @@
-# Beecart.redis_conf = {
-#   host: 'localhost',
-#   port: 5555
-# }
-# 
-# Beecart.expire_time = 30
+# -*- coding: utf-8 -*-
 
 Beecart.configure do |config|
   config.expire_time = 30
@@ -11,4 +6,8 @@ Beecart.configure do |config|
     host: 'localhost',
     port: 5555
   }
+
+  config.tax_rate = 0.05
+
+  config.default_gateway = :webpay
 end

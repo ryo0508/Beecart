@@ -21,8 +21,8 @@
 <dt>Cart Key:</dt>
 <dd><%= @current_cart.key %></dd>
 
-<dt>Total Cost:</dt>
-<dd><%= @current_cart.total_cost %></dd>
+<dt>Total Price:</dt>
+<dd><%= @current_cart.total_price %></dd>
 
 <dt>Items:</dt>
 <dd class="item_list">
@@ -48,6 +48,12 @@
 <dd><%= @current_cart.data[:updated_at] %></dd>
 
 <hr />
+
+<h2>Buy Cart</h2>
+
+<%= form_tag checkout_cart_path, method: 'post' do %>
+  <%= button_tag "Checkout Cart", class: "button" %>
+<% end %>
 
 <h2>Delete Cart</h2>
 
