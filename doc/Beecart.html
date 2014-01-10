@@ -80,7 +80,7 @@
   
     <dt class="r1 last">Defined in:</dt>
     <dd class="r1 last">lib/beecart.rb<span class="defines">,<br />
-  lib/beecart/engine.rb,<br /> lib/beecart/version.rb,<br /> lib/beecart/models/shopping_cart.rb,<br /> app/helpers/beecart/application_helper.rb,<br /> app/controllers/beecart/application_controller.rb</span>
+  lib/beecart/version.rb,<br /> lib/beecart/current_cart.rb,<br /> lib/beecart/shopping_cart.rb,<br /> lib/beecart/configuration.rb,<br /> lib/beecart/gateway/webpay.rb,<br /> lib/beecart/validator/validator.rb</span>
 </dd>
   
 </dl>
@@ -90,11 +90,11 @@
 <p class="children">
   
     
-      <strong class="modules">Modules:</strong> <span class='object_link'><a href="Beecart/ApplicationHelper.html" title="Beecart::ApplicationHelper (module)">ApplicationHelper</a></span>
+      <strong class="modules">Modules:</strong> <span class='object_link'><a href="Beecart/CurrentCart.html" title="Beecart::CurrentCart (module)">CurrentCart</a></span>, <span class='object_link'><a href="Beecart/Gateway.html" title="Beecart::Gateway (module)">Gateway</a></span>, <span class='object_link'><a href="Beecart/Validator.html" title="Beecart::Validator (module)">Validator</a></span>
     
   
     
-      <strong class="classes">Classes:</strong> <span class='object_link'><a href="Beecart/ApplicationController.html" title="Beecart::ApplicationController (class)">ApplicationController</a></span>, <span class='object_link'><a href="Beecart/Engine.html" title="Beecart::Engine (class)">Engine</a></span>, <span class='object_link'><a href="Beecart/ShoppingCart.html" title="Beecart::ShoppingCart (class)">ShoppingCart</a></span>
+      <strong class="classes">Classes:</strong> <span class='object_link'><a href="Beecart/Configuration.html" title="Beecart::Configuration (class)">Configuration</a></span>, <span class='object_link'><a href="Beecart/ShoppingCart.html" title="Beecart::ShoppingCart (class)">ShoppingCart</a></span>
     
   
 </p>
@@ -114,121 +114,126 @@
 
 
 
-  <h2>Class Attribute Summary <small>(<a href="#" class="summary_toggle">collapse</a>)</small></h2>
-  <ul class="summary">
-    
-      <li class="public ">
-  <span class="summary_signature">
-    
-      <a href="#expire_time-class_method" title="expire_time (class method)">+ (Object) <strong>expire_time</strong> </a>
-    
-
-    
-  </span>
-  
-  
-  
-    
-    
-  
-  
-  
-  
-  
-
-  
-    <span class="summary_desc"><div class='inline'>
-<p>何秒でカートが消滅するか.</p>
-</div></span>
-  
-</li>
-
-    
-      <li class="public ">
-  <span class="summary_signature">
-    
-      <a href="#redis_conf-class_method" title="redis_conf (class method)">+ (Object) <strong>redis_conf</strong> </a>
-    
-
-    
-  </span>
-  
-  
-  
-    
-    
-  
-  
-  
-  
-  
-
-  
-    <span class="summary_desc"><div class='inline'>
-<p>接続するRedisへの情報.</p>
-</div></span>
-  
-</li>
-
-    
-  </ul>
 
 
 
+  
+    <h2>
+      Class Method Summary
+      <small>(<a href="#" class="summary_toggle">collapse</a>)</small>
+    </h2>
 
-
-  <div id="class_attr_details" class="attr_details">
-    <h2>Class Attribute Details</h2>
-    
+    <ul class="summary">
       
-      <span id="expire_time=-class_method"></span>
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#config-class_method" title="config (class method)">+ (Object) <strong>config</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#configure-class_method" title="configure (class method)">+ (Object) <strong>configure</strong> {|config| ... }</a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#logger-class_method" title="logger (class method)">+ (Object) <strong>logger</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+    </ul>
+  
+
+
+
+  <div id="class_method_details" class="method_details_list">
+    <h2>Class Method Details</h2>
+
+    
       <div class="method_details first">
-  <h3 class="signature first" id="expire_time-class_method">
+  <h3 class="signature first" id="config-class_method">
   
-    + (<tt>Object</tt>) <strong>expire_time</strong> 
-  
-
+    + (<tt>Object</tt>) <strong>config</strong> 
   
 
   
-</h3><div class="docstring">
-  <div class="discussion">
-    
-<p>何秒でカートが消滅するか</p>
 
-
-  </div>
-</div>
-<div class="tags">
   
-
-</div><table class="source_code">
+</h3><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
-21
-22
-23</pre>
+45
+46
+47</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/beecart.rb', line 21</span>
+      <pre class="code"><span class="info file"># File 'lib/beecart/configuration.rb', line 45</span>
 
-<span class='kw'>def</span> <span class='id identifier rubyid_expire_time='>expire_time=</span><span class='lparen'>(</span><span class='id identifier rubyid_val'>val</span><span class='rparen'>)</span>
-  <span class='ivar'>@expire_time</span> <span class='op'>=</span> <span class='id identifier rubyid_val'>val</span>
+<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_config'>config</span>
+  <span class='const'>Configuration</span><span class='period'>.</span><span class='id identifier rubyid_instance'>instance</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
 </table>
 </div>
     
-      
-      <span id="redis_conf=-class_method"></span>
       <div class="method_details ">
-  <h3 class="signature " id="redis_conf-class_method">
+  <h3 class="signature " id="configure-class_method">
   
-    + (<tt>Object</tt>) <strong>redis_conf</strong> 
+    + (<tt>Object</tt>) <strong>configure</strong> {|config| ... }
   
 
   
@@ -237,13 +242,24 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>接続するRedisへの情報</p>
-
 
   </div>
 </div>
 <div class="tags">
   
+<p class="tag_title">Yields:</p>
+<ul class="yield">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="#config-class_method" title="Beecart.config (method)">config</a></span></tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
 
 </div><table class="source_code">
   <tr>
@@ -251,15 +267,45 @@
       <pre class="lines">
 
 
-21
-22
-23</pre>
+49
+50
+51</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/beecart.rb', line 21</span>
+      <pre class="code"><span class="info file"># File 'lib/beecart/configuration.rb', line 49</span>
 
-<span class='kw'>def</span> <span class='id identifier rubyid_expire_time='>expire_time=</span><span class='lparen'>(</span><span class='id identifier rubyid_val'>val</span><span class='rparen'>)</span>
-  <span class='ivar'>@expire_time</span> <span class='op'>=</span> <span class='id identifier rubyid_val'>val</span>
+<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_configure'>configure</span>
+  <span class='kw'>yield</span> <span class='id identifier rubyid_config'>config</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="logger-class_method">
+  
+    + (<tt>Object</tt>) <strong>logger</strong> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+53
+54
+55</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/beecart/configuration.rb', line 53</span>
+
+<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_logger'>logger</span>
+  <span class='id identifier rubyid_config'>config</span><span class='period'>.</span><span class='id identifier rubyid_logger'>logger</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -267,12 +313,11 @@
 </div>
     
   </div>
-
 
 </div>
 
     <div id="footer">
-  Generated on Wed Jan  8 18:33:33 2014 by
+  Generated on Thu Jan  9 19:53:29 2014 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.8.7.3 (ruby-2.0.0).
 </div>
