@@ -97,7 +97,14 @@ module Beecart
     # @param [Hash] data 追加するデータ
     # @return [Boolean]
     def append_info(key, data)
-      if send(key.to_s + '_validate', data)
+
+      begin
+        validator = ["Beecart", "Validators", "#{ key.to_s }_validator".camelize].join('::').constantize.new
+      rescue NameError
+        validator = Beecart::Validators::DefaultValidator.new
+      end
+
+      if validator.run(data)
         @data[key.to_sym] = data
         dump_data
       else

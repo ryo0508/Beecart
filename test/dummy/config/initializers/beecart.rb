@@ -12,9 +12,8 @@ Beecart.configure do |config|
   config.default_gateway = :webpay
 end
 
-# module Beecart
-#   module Validators
-#     load :CustomValidatork, 'lib/beecart/validators/custom_validator'
-#   end
-# end
-
+module Beecart
+  module Validators
+    autoload :CustomValidator, 'beecart/validators/custom_validator'
+  end
+end
