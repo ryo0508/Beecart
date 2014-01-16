@@ -105,6 +105,19 @@ module Beecart
       end
     end
 
+    # 入っている商品に変更を加える
+    #
+    # @param [String] key
+    # @param [Hash]   changes 変更されるもののキーとバリュー
+    # @return [Boolean]
+    def edit_item(key, changes={})
+      changes.each do |label, value|
+        @data[:items][key][label] = value
+      end
+
+      dump_data
+    end
+
     # 指定されたkeyのアイテムを削除する
     #
     # @param [String] key 削除するアイテムのレコード
