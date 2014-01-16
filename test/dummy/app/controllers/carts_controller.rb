@@ -61,6 +61,14 @@ class CartsController < ApplicationController
     render :text => 'OK'
   end
 
+  def edit_item
+    current_cart.edit_item(params[:item_key], {
+      quantity: params[:quantity]
+    })
+
+    render :text => 'OK'
+  end
+
   private
 
   def get_current_cart

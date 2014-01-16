@@ -111,11 +111,16 @@ module Beecart
     # @param [Hash]   changes 変更されるもののキーとバリュー
     # @return [Boolean]
     def edit_item(key, changes={})
-      changes.each do |label, value|
-        @data[:items][key][label] = value
-      end
 
-      dump_data
+      target_item = @data[:items][key.to_sym]
+
+      unless target_item.nil?
+        changes.each do |label, value|
+          target_item[label.to_sym] = value
+        end
+
+        dump_data
+      end
     end
 
     # 指定されたkeyのアイテムを削除する

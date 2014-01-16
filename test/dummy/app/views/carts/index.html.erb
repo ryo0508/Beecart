@@ -55,6 +55,15 @@
   <%= button_tag "Checkout Cart", class: "button" %>
 <% end %>
 
+<h2>Edit Cart</h2>
+
+<% @current_cart.items.each do |key, item| %>
+  <%= form_tag edit_item_path(item_key: key), method: 'put' do %>
+    <%= text_field_tag :quantity, item[:quantity] %>
+    <%= button_tag "Edit Cart", class: "button" %>
+  <% end %>
+<% end %>
+
 <h2>Delete Cart</h2>
 
 <%= form_tag destroy_cart_path, method: 'delete' do %>
