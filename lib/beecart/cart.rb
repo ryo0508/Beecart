@@ -93,16 +93,13 @@ module Beecart
 
     # 購入データを追加する
     #
-    # @param [String] key 追加するデータの識別子
+    # @param [Symbol] key 追加するデータの識別子
+    # @param [Symbol] validator_name Validator名
     # @param [Hash] data 追加するデータ
     # @return [Boolean]
-    def append_info(key, data)
+    def append_info(key, validator_name=false, data)
 
-      begin
-        validator = ["Beecart", "Validators", "#{ key.to_s }_validator".camelize].join('::').constantize.new
-      rescue NameError
-        validator = Beecart::Validators::DefaultValidator.new
-      end
+      validator = get_validator(validator_name)
 
       if validator.run(data)
         @data[key.to_sym] = data
@@ -183,6 +180,16 @@ module Beecart
 
     def gateway_class_name name
       ["Beecart::Gateway::",name.to_s.camelize,"Gateway"].join('')
+    end
+
+    def get_validator validator_name
+      begin
+        validator = ["Beecart", "Validators", "#{ validator_name.to_s }_validator".camelize].join('::').constantize.new
+      rescue NameError
+        validator = Beecart::Validators::DefaultValidator.new
+      end
+
+      validator
     end
 
     # Redis内から取ってきたデータをデシリアイズして返却。
