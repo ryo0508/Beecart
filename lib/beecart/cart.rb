@@ -46,9 +46,15 @@ module Beecart
 
     # カート内のitemsを返却
     #
-    # @return [Hash]
+    # @return [Array]
     def items
-      data[:items]
+      items = []
+
+      data[:items].each do |key, data|
+        items << Hashie::Mash.new(item_key: key.to_s).merge(data)
+      end
+
+      return items
     end
 
     # カート内の商品の合計金額を計算する

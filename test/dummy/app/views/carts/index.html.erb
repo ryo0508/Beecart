@@ -26,15 +26,15 @@
 
 <dt>Items:</dt>
 <dd class="item_list">
-  <%= @current_cart.items.each do |key, item| %>
+  <%= @current_cart.items.each do |item| %>
     <dt class="item">Price</dt>
-    <dd class="item"><%= item[:price] %></dd>
+    <dd class="item"><%= item.price %></dd>
     <br />
     <dt class="item">Quantity</dt>
-    <dd class="item"><%= item[:quantity] %></dd>
+    <dd class="item"><%= item.quantity %></dd>
 
     <%= form_tag remove_item_path, method: 'delete' do %>
-      <%= hidden_field_tag 'items[key]', key %>
+      <%= hidden_field_tag 'items[key]', item.item_key %>
       <%= button_tag "Remove This Item", class: "button" %>
     <% end %>
     <hr />
@@ -57,9 +57,9 @@
 
 <h2>Edit Cart</h2>
 
-<% @current_cart.items.each do |key, item| %>
-  <%= form_tag edit_item_path(item_key: key), method: 'put' do %>
-    <%= text_field_tag :quantity, item[:quantity] %>
+<% @current_cart.items.each do |item| %>
+  <%= form_tag edit_item_path(item_key: item.item_key), method: 'put' do %>
+    <%= text_field_tag :quantity, item.quantity %>
     <%= button_tag "Edit Cart", class: "button" %>
   <% end %>
 <% end %>
