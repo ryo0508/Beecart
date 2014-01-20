@@ -30,21 +30,6 @@ module Beecart
     def initialize(cart_id=nil)
       @redis = Redis.new(Beecart.config.redis)
 
-      Beecart.logger.debug "cart_id => #{ cart_id }"
-      Beecart.logger.debug "@redis.get => #{ @redis.get(cart_id) }"
-
-      if cart_id.nil?
-        Beecart.logger.debug "cart_id => nil"
-      else
-        Beecart.logger.debug "cart_id => not nil"
-      end
-
-      if @redis.get(cart_id).nil?
-        Beecart.logger.debug "redis.get => nil"
-      else
-        Beecart.logger.debug "redis.get => not nil"
-      end
-
       if !cart_id.nil? & @redis.get(cart_id).nil?
         raise Error, "Cart was not found with the given cart_id"
       end
