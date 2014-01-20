@@ -29,6 +29,26 @@ module Beecart
 
     def initialize(cart_id=nil)
       @redis = Redis.new(Beecart.config.redis)
+
+      Beecart.logger.debug "cart_id => #{ cart_id }"
+      Beecart.logger.debug "@redis.get => #{ @redis.get(cart_id) }"
+
+      if cart_id.nil?
+        Beecart.logger.debug "cart_id => nil"
+      else
+        Beecart.logger.debug "cart_id => not nil"
+      end
+
+      if @redis.get(cart_id).nil?
+        Beecart.logger.debug "redis.get => nil"
+      else
+        Beecart.logger.debug "redis.get => not nil"
+      end
+
+      if !cart_id.nil? & @redis.get(cart_id).nil?
+        raise Error, "Cart was not found with the given cart_id"
+      end
+
       @key   = cart_id.nil? ? SecureRandom.hex : cart_id
       @data  = data
     end
@@ -42,6 +62,16 @@ module Beecart
       else
         load_data(@redis.get(@key))
       end
+    end
+
+
+    # 任意のキーを持ったアイテムを返却する
+    #
+    # @return [Hashie::Mash] アイテム
+    def item(key)
+      data[:items][key] = data
+
+      return Hashie::Mash.new(item_key: key).merge(data)
     end
 
     # カート内のitemsを返却
@@ -59,30 +89,34 @@ module Beecart
 
     # カート内の商品の合計金額を計算する
     #
+    # @param  [Boolean] with_tax 商品税を入れるかどうか
     # @return [Integer] 税抜き合計金額
-    def total_price
-      data[:items].inject(0) do |res, (key, item)|
+    def total_price(with_tax=false)
+      price = data[:items].inject(0) do |res, (key, item)|
         res += item[:price].to_i * item[:quantity].to_i
+
         res.to_i
       end
+
+      return with_tax ?  price + ( price * Beecart.config.tax_rate ) : price
     end
 
     # カート内の商品の税込み合計金額を計算する
     #
     # @return [Integer] 税込み合計金額
-    def total_price_with_tax
-      data[:items].inject(0) do |res, (key, item)|
-        res += item[:price].to_i * item[:quantity].to_i * Beecart.config.tax_rate
-        res.ceil.to_i
-      end
-    end
+    # def total_price_with_tax
+    #   data[:items].inject(0) do |res, (key, item)|
+    #     res += item[:price].to_i * item[:quantity].to_i * Beecart.config.tax_rate
+    #     res.ceil.to_i
+    #   end
+    # end
 
     # 指定された商品を追加する
     #
     # @param [Hash] item_info 追加する商品の情報
     # @option item_info [Integer] :price 商品の値段
-    # @option item_info [Integer] :quantity (0) 購入希望個数
-    def add_item(item_info={ quantity: 0})
+    # @option item_info [Integer] :quantity 購入希望個数
+    def add_item(item_info={ })
 
       unless item_info.has_key?(:price)
         raise Error,"Price needs to be passed when adding a item to cart."
@@ -92,9 +126,12 @@ module Beecart
         raise Error, "Quantity needs to be passed when adding a item to cart."
       end
 
-      @data[:items][rand_key] = item_info
+      random_key_for_item = rand_key
+      @data[:items][random_key_for_item] = item_info
 
       dump_data
+
+      return random_key_for_item
     end
 
     # 購入データを追加する
@@ -120,7 +157,7 @@ module Beecart
     # @param [String] key
     # @param [Hash]   changes 変更されるもののキーとバリュー
     # @return [Boolean]
-    def edit_item(key, changes={})
+    def update_item(key, changes={})
 
       target_item = @data[:items][key.to_sym]
 
@@ -222,8 +259,8 @@ module Beecart
     # Redis内のデータを書き換える
     def dump_data
       @data[:updated_at] = Time.now.to_s
-      @redis.set(@key, @data.to_msgpack)
-      @redis.expire(@key, Beecart.config.expire_time)
+      @redis.set(@key, @data.to_msgpack, { ex: Beecart.config.expire_time })
+      # @redis.expire(@key, Beecart.config.expire_time)
     end
 
     # ランダムな文字列を生成

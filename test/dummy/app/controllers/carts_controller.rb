@@ -62,7 +62,7 @@ class CartsController < ApplicationController
   end
 
   def edit_item
-    current_cart.edit_item(params[:item_key], {
+    current_cart.update_item(params[:item_key], {
       quantity: params[:quantity]
     })
 

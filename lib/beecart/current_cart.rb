@@ -10,7 +10,12 @@ module Beecart
     # @return [ShoppingCart]
     def current_cart
       if session[:cart_id]
-        cart = Beecart::Cart.new(session[:cart_id])
+        begin
+          cart = Beecart::Cart.new(session[:cart_id])
+        rescue
+          cart = Beecart::Cart.new()
+          session[:cart_id] = cart.key
+        end
       else
         session[:cart_id]
         cart = Beecart::Cart.new()
