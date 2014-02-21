@@ -21,7 +21,13 @@ module Beecart
         port: 5555
       },
       tax_rate: 0.05,
-      default_gateway: :webpay
+      default_gateway: :webpay,
+      default_cart_info: {
+        shipping_address: {},
+        billing_address: {},
+        credit_card: {},
+        shipping_instruction: {},
+      }
     }
 
     def self.defaults
@@ -41,7 +47,7 @@ module Beecart
     end
 
     attr_reader   :redis
-    attr_accessor :logger, :expire_time, :tax_rate, :default_gateway
+    attr_accessor :logger, :expire_time, :tax_rate, :default_gateway, :default_cart_info
   end
 
   def self.config

@@ -58,7 +58,8 @@ class CartsController < ApplicationController
       }
     })
 
-    render :text => 'OK'
+    # render :text => 'OK'
+    redirect_to :index
   end
 
   def edit_item
@@ -66,7 +67,17 @@ class CartsController < ApplicationController
       quantity: params[:quantity]
     })
 
-    render :text => 'OK'
+    redirect_to :index
+  end
+
+  def append_info
+    result = current_cart.append_info(params[:key], params[:key], params[:append_data])
+
+    unless result.error
+      redirect_to root_path
+    else
+      render text: result.messages.join("<br />")
+    end
   end
 
   private

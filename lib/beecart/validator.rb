@@ -6,6 +6,7 @@ module Beecart
     @varidators ||= []
   end
 
+  # Beecartの@validatorsに自身をPushする
   module Validator
     def self.included(base)
       Beecart.validators << base

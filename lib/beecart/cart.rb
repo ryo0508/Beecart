@@ -128,15 +128,14 @@ module Beecart
     def append_info(key, validator_name=false, data)
 
       validator = get_validator(validator_name)
+      validator.run(data)
 
-      if validator.run(data)
+      unless validator.error
         @data[key.to_sym] = data
         dump_data
-
-        data
-      else
-        false
       end
+
+      validator
     end
 
     # 入っている商品に変更を加える
@@ -215,7 +214,16 @@ module Beecart
     def get_validator validator_name
       begin
         validator = ["Beecart", "Validators", "#{ validator_name.to_s }_validator".camelize].join('::').constantize.new
+
+        p "--------------------------------------------------"
+        p "Get Validator"
+        p "Validator => #{ validator }"
+        p "Validator => #{ validator }"
+        p "--------------------------------------------------"
       rescue NameError
+        p "--------------------------------------------------"
+        p "Get Validator: Failed"
+        p "--------------------------------------------------"
         validator = Beecart::Validators::DefaultValidator.new
       end
 
@@ -231,13 +239,9 @@ module Beecart
         {
           items: {},
           user_id: nil,
-          shipping_address: {},
-          billing_address: {},
-          credit_card: {},
-          shipping_instruction: {},
           created_at: Time.now.to_s,
           updated_at: Time.now.to_s
-        }
+        }.merge(Beecart.config.default_cart_info)
       else
         symbolize(MessagePack.unpack(data))
       end

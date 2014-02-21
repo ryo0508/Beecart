@@ -17,48 +17,57 @@
 <h2>Your Current Cart Status</h2>
 
 <%# <%= @current_cart %>
+<dl>
+  <dt>Cart Key:</dt>
+  <dd><%= @current_cart.key %></dd>
 
-<dt>Cart Key:</dt>
-<dd><%= @current_cart.key %></dd>
+  <dt>Total Price:</dt>
+  <dd><%= @current_cart.total_price %></dd>
 
-<dt>Total Price:</dt>
-<dd><%= @current_cart.total_price %></dd>
+  <dt>Items:</dt>
+  <dd class="item_list">
+    <% @current_cart.items.each do |item| %>
+      <dt class="item">Key</dt>
+      <dd class="item"><%= item.item_key%></dd>
+      <br />
+      <dt class="item">Price</dt>
+      <dd class="item"><%= item.price %></dd>
+      <br />
+      <dt class="item">Quantity</dt>
+      <dd class="item"><%= item.quantity %></dd>
 
-<dt>Items:</dt>
-<dd class="item_list">
-  <%= @current_cart.items.each do |item| %>
-    <dt class="item">Price</dt>
-    <dd class="item"><%= item.price %></dd>
-    <br />
-    <dt class="item">Quantity</dt>
-    <dd class="item"><%= item.quantity %></dd>
-
-    <%= form_tag remove_item_path, method: 'delete' do %>
-      <%= hidden_field_tag 'items[key]', item.item_key %>
-      <%= button_tag "Remove This Item", class: "button" %>
+      <%= form_tag remove_item_path, method: 'delete' do %>
+        <%= hidden_field_tag 'items[key]', item.item_key %>
+        <%= button_tag "Remove This Item", class: "button" %>
+      <% end %>
+      <hr />
     <% end %>
-    <hr />
-  <% end %>
-</dd>
+  </dd>
 
-<dt>Created at:</dt>
-<dd><%= @current_cart.data[:created_at] %></dd>
+  <dt>Created at:</dt>
+  <dd><%= @current_cart.data[:created_at] %></dd>
 
-<dt>Updated at:</dt>
-<dd><%= @current_cart.data[:updated_at] %></dd>
+  <dt>Updated at:</dt>
+  <dd><%= @current_cart.data[:updated_at] %></dd>
+</dl>
 
 <hr />
 
-<h2>Buy Cart</h2>
-
-<%= form_tag checkout_cart_path, method: 'post' do %>
-  <%= button_tag "Checkout Cart", class: "button" %>
+<h2>Appended Data</h2>
+<% @current_cart.data.each do |key, value| %>
+  <% unless [ :user_id, :credit_card, :created_at, :updated_at, :items, :shipping_address, :billing_address, :shipping_instruction ].include? key.to_sym %>
+    <dt><%= key %></dt>
+    <dd><%= value %></dd>
+  <% end %>
 <% end %>
+
+<hr />
 
 <h2>Edit Cart</h2>
 
 <% @current_cart.items.each do |item| %>
   <%= form_tag edit_item_path(item_key: item.item_key), method: 'put' do %>
+    <%= item.item_key %>
     <%= text_field_tag :quantity, item.quantity %>
     <%= button_tag "Edit Cart", class: "button" %>
   <% end %>
@@ -68,4 +77,12 @@
 
 <%= form_tag destroy_cart_path, method: 'delete' do %>
   <%= button_tag "Destroy Cart", class: "button" %>
+<% end %>
+
+<h2>Append data to your cart</h2>
+<%= form_tag append_info_cart_path, method: 'post' do %>
+  <%= text_field_tag 'key', nil, placeholder: "KEY" %>
+  <%= text_field_tag 'append_data[value_1]', nil, placeholder: "Value 1" %>
+  <%= text_field_tag 'append_data[value_2]', nil, placeholder: "Value 2" %>
+  <%= button_tag "Append Data", class: "button" %>
 <% end %>

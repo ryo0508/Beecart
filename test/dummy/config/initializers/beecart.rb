@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 Beecart.configure do |config|
-  config.expire_time = 30
+  config.expire_time = 3000
   config.redis = {
     host: 'localhost',
     port: 5555
