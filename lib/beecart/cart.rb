@@ -79,11 +79,17 @@ module Beecart
     def total_price(with_tax=false)
       price = data[:items].inject(0) do |res, (key, item)|
         res += item[:price].to_i * item[:quantity].to_i
-
         res.to_i
       end
 
-      return with_tax ?  price + ( price * Beecart.config.tax_rate ) : price
+      return with_tax ? price + ( price * Beecart.config.tax_rate ).to_i : price
+    end
+
+    # カート内の商品の合計金額にかかる消費税を計算
+    #
+    # @return [Integer] 合計金額にかかる消費税
+    def tax
+      return ( total_price * Beecart.config.tax_rate ).to_i
     end
 
     # カート内の商品の税込み合計金額を計算する

@@ -21,8 +21,14 @@
   <dt>Cart Key:</dt>
   <dd><%= @current_cart.key %></dd>
 
+  <dt>Total Price with TAX:</dt>
+  <dd><%= @current_cart.total_price(true) %></dd>
+
   <dt>Total Price:</dt>
   <dd><%= @current_cart.total_price %></dd>
+
+  <dt>Tax:</dt>
+  <dd><%= @current_cart.tax %></dd>
 
   <dt>Items:</dt>
   <dd class="item_list">

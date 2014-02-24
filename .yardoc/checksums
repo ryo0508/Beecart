@@ -1,5 +1,5 @@
 lib/beecart.rb d78d2dfcabb76b2b5dcc25f917ebf89fcec2637c
-lib/beecart/cart.rb c75ce66b8528f3e4569a33e5b755c758514e4cc6
+lib/beecart/cart.rb c7c4dcdc725c81e54df2c13b708a5336c8dc0c29
 lib/beecart/error.rb 16985e4927fa869f215d2f53a0d4982f7135b7f6
 lib/beecart/version.rb b3808c9a09c7bc0f505c86acff788730ced5da85
 lib/beecart/validator.rb 2f7c76b1c3a00442a688faab338736791108197b
