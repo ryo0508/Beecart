@@ -181,35 +181,7 @@ module Beecart
       @redis.del(@key)
     end
 
-    # 仮計上(与信)をとる
-    #
-    # @param  [Hash] payment_info 支払情報
-    # @return [WebPay::Charge]
-    def authorize payment_info={}
-      gateway.authorize total_price_with_tax, payment_info
-    end
-
-    # 本計上を取る
-    #
-    # @param  [Hash] payment_info 支払情報
-    # @return [WebPay::Charge]
-    def charge payment_info={}
-      gateway.charge total_price_with_tax, payment_info
-    end
-
     private
-
-    def gateway name=nil
-      klass = name.nil? ?
-        gateway_class_name(Beecart.config.default_gateway).constantize :
-        gateway_class_name(name).constantize
-
-      klass.new
-    end
-
-    def gateway_class_name name
-      ["Beecart::Gateway::",name.to_s.camelize,"Gateway"].join('')
-    end
 
     def get_validator validator_name
       begin
@@ -224,7 +196,7 @@ module Beecart
         p "--------------------------------------------------"
         p "Get Validator: Failed"
         p "--------------------------------------------------"
-        validator = Beecart::Validators::DefaultValidator.new
+        validator = Beecart::Validators::BaseValidator.new
       end
 
       validator

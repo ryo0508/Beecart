@@ -77,36 +77,110 @@
     
   
   
+    <dt class="r1">Included in:</dt>
+    <dd class="r1"><span class='object_link'><a href="Validators/BaseValidator.html" title="Beecart::Validators::BaseValidator (class)">Beecart::Validators::BaseValidator</a></span></dd>
+    
   
-    <dt class="r1 last">Defined in:</dt>
-    <dd class="r1 last">lib/beecart/validator/validator.rb</dd>
+  
+    <dt class="r2 last">Defined in:</dt>
+    <dd class="r2 last">lib/beecart/validator.rb</dd>
   
 </dl>
 <div class="clear"></div>
 
-<h2>Defined Under Namespace</h2>
-<p class="children">
-  
+<h2>Overview</h2><div class="docstring">
+  <div class="discussion">
     
+<p>Beecartの@validatorsに自身をPushする</p>
+
+
+  </div>
+</div>
+<div class="tags">
   
-    
-      <strong class="classes">Classes:</strong> <span class='object_link'><a href="Validator/Validator.html" title="Beecart::Validator::Validator (class)">Validator</a></span>
-    
+
+</div>
+
+
+
+
+
+
   
-</p>
+    <h2>
+      Class Method Summary
+      <small>(<a href="#" class="summary_toggle">collapse</a>)</small>
+    </h2>
+
+    <ul class="summary">
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#included-class_method" title="included (class method)">+ (Object) <strong>included</strong>(base) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+    </ul>
+  
 
 
 
+  <div id="class_method_details" class="method_details_list">
+    <h2>Class Method Details</h2>
+
+    
+      <div class="method_details first">
+  <h3 class="signature first" id="included-class_method">
+  
+    + (<tt>Object</tt>) <strong>included</strong>(base) 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
 
 
+11
+12
+13</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/beecart/validator.rb', line 11</span>
 
-
-
+<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_included'>included</span><span class='lparen'>(</span><span class='id identifier rubyid_base'>base</span><span class='rparen'>)</span>
+  <span class='const'>Beecart</span><span class='period'>.</span><span class='id identifier rubyid_validators'>validators</span> <span class='op'>&lt;&lt;</span> <span class='id identifier rubyid_base'>base</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
 
 </div>
 
     <div id="footer">
-  Generated on Fri Jan 10 13:51:18 2014 by
+  Generated on Fri Feb 21 11:58:13 2014 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.8.7.3 (ruby-2.0.0).
 </div>

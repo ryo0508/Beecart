@@ -192,14 +192,24 @@
 18
 19
 20
-21</pre>
+21
+22
+23
+24
+25
+26</pre>
     </td>
     <td>
       <pre class="code"><span class="info file"># File 'lib/beecart/current_cart.rb', line 11</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_current_cart'>current_cart</span>
   <span class='kw'>if</span> <span class='id identifier rubyid_session'>session</span><span class='lbracket'>[</span><span class='symbol'>:cart_id</span><span class='rbracket'>]</span>
-    <span class='id identifier rubyid_cart'>cart</span> <span class='op'>=</span> <span class='const'>Beecart</span><span class='op'>::</span><span class='const'>Cart</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='id identifier rubyid_session'>session</span><span class='lbracket'>[</span><span class='symbol'>:cart_id</span><span class='rbracket'>]</span><span class='rparen'>)</span>
+    <span class='kw'>begin</span>
+      <span class='id identifier rubyid_cart'>cart</span> <span class='op'>=</span> <span class='const'>Beecart</span><span class='op'>::</span><span class='const'>Cart</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='id identifier rubyid_session'>session</span><span class='lbracket'>[</span><span class='symbol'>:cart_id</span><span class='rbracket'>]</span><span class='rparen'>)</span>
+    <span class='kw'>rescue</span>
+      <span class='id identifier rubyid_cart'>cart</span> <span class='op'>=</span> <span class='const'>Beecart</span><span class='op'>::</span><span class='const'>Cart</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='rparen'>)</span>
+      <span class='id identifier rubyid_session'>session</span><span class='lbracket'>[</span><span class='symbol'>:cart_id</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='id identifier rubyid_cart'>cart</span><span class='period'>.</span><span class='id identifier rubyid_key'>key</span>
+    <span class='kw'>end</span>
   <span class='kw'>else</span>
     <span class='id identifier rubyid_session'>session</span><span class='lbracket'>[</span><span class='symbol'>:cart_id</span><span class='rbracket'>]</span>
     <span class='id identifier rubyid_cart'>cart</span> <span class='op'>=</span> <span class='const'>Beecart</span><span class='op'>::</span><span class='const'>Cart</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='rparen'>)</span>
@@ -218,7 +228,7 @@
 </div>
 
     <div id="footer">
-  Generated on Fri Jan 10 13:51:18 2014 by
+  Generated on Fri Feb 21 11:58:13 2014 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.8.7.3 (ruby-2.0.0).
 </div>

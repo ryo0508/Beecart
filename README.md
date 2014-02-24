@@ -31,9 +31,13 @@ Beecart.configure do |config|
   # Default Tax Rate
   config.tax_rate = 0.05
 
-  # Default Payment Gateway
-  config.default_gateway = :webpay
-
+  # Default Preset Info in the cart
+  default_cart_info: {
+    shipping_address: {},
+    billing_address: {},
+    credit_card: {},
+    shipping_instruction: {},
+  }
 end
 ```
 

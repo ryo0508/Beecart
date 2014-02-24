@@ -2,7 +2,7 @@
 
 module Beecart
   module Validators
-    class HogeValidator < Beecart::Validators::DefaultValidator
+    class HogeValidator < Beecart::Validators::BaseValidator
       def run args
         puts '---------- hoge_validator start ----------'
 

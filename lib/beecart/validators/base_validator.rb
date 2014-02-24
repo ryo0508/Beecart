@@ -2,14 +2,14 @@
 
 module Beecart
   module Validators
-    class DefaultValidator
+    class BaseValidator
 
       include Beecart::Validator
 
       attr_reader :error, :messages
 
       def initialize
-        @error    = false
+        @error       = false
         @target_data = nil
         @messages = []
       end

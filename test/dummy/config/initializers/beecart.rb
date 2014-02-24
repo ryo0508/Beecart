@@ -8,8 +8,6 @@ Beecart.configure do |config|
   }
 
   config.tax_rate = 0.05
-
-  config.default_gateway = :webpay
 end
 
 module Beecart
