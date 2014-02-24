@@ -80,7 +80,7 @@
   
     <dt class="r1 last">Defined in:</dt>
     <dd class="r1 last">lib/beecart.rb<span class="defines">,<br />
-  lib/beecart/cart.rb,<br /> lib/beecart/error.rb,<br /> lib/beecart/version.rb,<br /> lib/beecart/validator.rb,<br /> lib/beecart/current_cart.rb,<br /> lib/beecart/configuration.rb,<br /> lib/beecart/gateway/base_gateway.rb,<br /> lib/beecart/gateway/webpay_gateway.rb,<br /> lib/beecart/validators/default_validator.rb</span>
+  lib/beecart/cart.rb,<br /> lib/beecart/error.rb,<br /> lib/beecart/version.rb,<br /> lib/beecart/validator.rb,<br /> lib/beecart/current_cart.rb,<br /> lib/beecart/configuration.rb,<br /> lib/beecart/gateway/base_gateway.rb,<br /> lib/beecart/gateway/webpay_gateway.rb,<br /> lib/beecart/validators/base_validator.rb</span>
 </dd>
   
 </dl>
@@ -237,12 +237,12 @@
       <pre class="lines">
 
 
-52
-53
-54</pre>
+54
+55
+56</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/beecart/configuration.rb', line 52</span>
+      <pre class="code"><span class="info file"># File 'lib/beecart/configuration.rb', line 54</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_config'>config</span>
   <span class='const'>Configuration</span><span class='period'>.</span><span class='id identifier rubyid_instance'>instance</span>
@@ -289,12 +289,12 @@
       <pre class="lines">
 
 
-56
-57
-58</pre>
+58
+59
+60</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/beecart/configuration.rb', line 56</span>
+      <pre class="code"><span class="info file"># File 'lib/beecart/configuration.rb', line 58</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_configure'>configure</span>
   <span class='kw'>yield</span> <span class='id identifier rubyid_config'>config</span>
@@ -319,12 +319,12 @@
       <pre class="lines">
 
 
-60
-61
-62</pre>
+62
+63
+64</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/beecart/configuration.rb', line 60</span>
+      <pre class="code"><span class="info file"># File 'lib/beecart/configuration.rb', line 62</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_logger'>logger</span>
   <span class='id identifier rubyid_config'>config</span><span class='period'>.</span><span class='id identifier rubyid_logger'>logger</span>
@@ -369,7 +369,7 @@
 </div>
 
     <div id="footer">
-  Generated on Fri Feb 21 11:58:13 2014 by
+  Generated on Mon Feb 24 16:39:58 2014 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.8.7.3 (ruby-2.0.0).
 </div>

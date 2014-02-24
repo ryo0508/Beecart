@@ -98,7 +98,7 @@
   
   
     <dt class="r1 last">Defined in:</dt>
-    <dd class="r1 last">lib/beecart/validators/default_validator.rb</dd>
+    <dd class="r1 last">lib/beecart/validators/base_validator.rb</dd>
   
 </dl>
 <div class="clear"></div>
@@ -281,10 +281,10 @@
 15</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/beecart/validators/default_validator.rb', line 11</span>
+      <pre class="code"><span class="info file"># File 'lib/beecart/validators/base_validator.rb', line 11</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span>
-  <span class='ivar'>@error</span>    <span class='op'>=</span> <span class='kw'>false</span>
+  <span class='ivar'>@error</span>       <span class='op'>=</span> <span class='kw'>false</span>
   <span class='ivar'>@target_data</span> <span class='op'>=</span> <span class='kw'>nil</span>
   <span class='ivar'>@messages</span> <span class='op'>=</span> <span class='lbracket'>[</span><span class='rbracket'>]</span>
 <span class='kw'>end</span></pre>
@@ -331,7 +331,7 @@
 11</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/beecart/validators/default_validator.rb', line 9</span>
+      <pre class="code"><span class="info file"># File 'lib/beecart/validators/base_validator.rb', line 9</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_error'>error</span>
   <span class='ivar'>@error</span>
@@ -374,7 +374,7 @@
 11</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/beecart/validators/default_validator.rb', line 9</span>
+      <pre class="code"><span class="info file"># File 'lib/beecart/validators/base_validator.rb', line 9</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_messages'>messages</span>
   <span class='ivar'>@messages</span>
@@ -461,7 +461,7 @@
 24</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/beecart/validators/default_validator.rb', line 21</span>
+      <pre class="code"><span class="info file"># File 'lib/beecart/validators/base_validator.rb', line 21</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_run'>run</span> <span class='id identifier rubyid_args'>args</span>
   <span class='ivar'>@target_data</span> <span class='op'>=</span> <span class='id identifier rubyid_args'>args</span>
@@ -477,7 +477,7 @@
 </div>
 
     <div id="footer">
-  Generated on Fri Feb 21 11:58:14 2014 by
+  Generated on Mon Feb 24 16:39:58 2014 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.8.7.3 (ruby-2.0.0).
 </div>
