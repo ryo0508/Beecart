@@ -6,7 +6,7 @@ module Beecart
 
       include Beecart::Validator
 
-      attr_reader :error, :messages
+      attr_reader :valid, :target_data, :errors
 
       def initialize
         @valid       = true
