@@ -9,9 +9,9 @@ module Beecart
       attr_reader :error, :messages
 
       def initialize
-        @error       = false
+        @valid       = true
         @target_data = nil
-        @messages = []
+        @errors      = {}
       end
 
       # Run the validation for given data
@@ -20,14 +20,15 @@ module Beecart
       # @return [Boolean] Result of Validation[:w
       def run args
         @target_data = args
-        @error ? false : true
+        @valid
       end
 
       protected
 
-      def record_error error_message
-        @messages << error_message
-        @error    = true
+      def record_error error_message, keys=nil
+        @errors[:messages] << error_message
+        @errors[:keys]     << key
+        @valid = false
       end
     end
   end
