@@ -28,7 +28,7 @@ module Beecart
 
       protected
 
-      def record_error error_message, keys=nil
+      def record_error error_message, key=nil
         @errors[:messages] << error_message
         @errors[:keys]     << key
         @valid = false

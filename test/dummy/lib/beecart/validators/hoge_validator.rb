@@ -14,11 +14,11 @@ module Beecart
         end
 
         if args["value_1"] != "hoge"
-          record_error "#{ args["value_1"] } is not suitable for value_1"
+          record_error "#{ args["value_1"] } is not suitable for value_1", "value_1"
         end
 
         if args["value_2"] == "hoge"
-          record_error "#{ args["value_2"] } is not suitable for value_2"
+          record_error "#{ args["value_2"] } is not suitable for value_2", "value_2"
         end
 
         puts '---------- hoge_validator  end  ----------'

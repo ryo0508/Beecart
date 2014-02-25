@@ -73,10 +73,10 @@ class CartsController < ApplicationController
   def append_info
     result = current_cart.append_info(params[:key], params[:key], params[:append_data])
 
-    unless result.error
+    if result.valid
       redirect_to root_path
     else
-      render text: result.messages.join("<br />")
+      render text: result.errors[:messages].join("<br />")
     end
   end
 

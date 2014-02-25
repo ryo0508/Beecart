@@ -130,13 +130,13 @@ module Beecart
     # @param  [Symbol] key 追加するデータの識別子
     # @param  [Symbol] validator_name Validator名
     # @param  [Hash] data 追加するデータ
-    # @return [Data] 追加されたデータ
+    # @return [Beecart::Validator] バリデーターオブジェクト
     def append_info(key, validator_name=false, data)
 
       validator = get_validator(validator_name)
       validator.run(data)
 
-      unless validator.error
+      if validator.valid
         @data[key.to_sym] = data
         dump_data
       end
