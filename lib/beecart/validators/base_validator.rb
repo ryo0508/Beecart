@@ -11,7 +11,10 @@ module Beecart
       def initialize
         @valid       = true
         @target_data = nil
-        @errors      = {}
+        @errors      = {
+          messages: [],
+          keys: []
+        }
       end
 
       # Run the validation for given data
