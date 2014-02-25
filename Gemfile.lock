@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    beecart (0.2.2)
+    beecart (0.2.3)
       msgpack (~> 0.5.8)
       redis (~> 3.0.6)
 
@@ -10,6 +10,7 @@ GEM
   specs:
     hashie (2.0.5)
     msgpack (0.5.8)
+    rake (10.1.1)
     redis (3.0.7)
 
 PLATFORMS
@@ -18,3 +19,4 @@ PLATFORMS
 DEPENDENCIES
   beecart!
   hashie
+  rake
