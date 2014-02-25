@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/ryo0508/Beecart.png?branch=master)](https://travis-ci.org/ryo0508/Beecart)
+
 # Beecart
 
 ## Requirement
